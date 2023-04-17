@@ -1,0 +1,146 @@
+{
+    "@context": {
+        "pied": "http://schema.indischerfgoed.org/",
+        "prov": "http://www.w3.org/ns/prov#",
+        "schema": "http://schema.org/",
+        "skos": "http://www.w3.org/2004/02/skos/core#",
+        "Event": {
+            "@id": "schema:Event"
+        },
+        "Person": {
+            "@id": "schema:Person"
+        },
+        "Place": {
+            "@id": "schema:Place"
+        },
+        "Organization": {
+            "@id": "schema:Organization"
+        },
+        "CreativeWork": {
+            "@id": "schema:CreativeWork"
+        },
+        "Story": {
+            "@id": "pied:Story"
+        },
+        "Concept": {
+            "@id": "skos:Concept"
+        },
+        "LifeEvent": {
+            "@id": "pied:LifeEvent"
+        },
+        "TransferEvent": {
+            "@id": "pied:TansferEvent"
+        },
+        "BirthEvent": {
+            "@id": "pied:BirthEvent"
+        },
+        "DeathEvent": {
+            "@id": "pied:DeathEvent"
+        },
+        "MediaObject": {
+            "@id": "schema:MediaObject"
+        },
+        "ImageObject": {
+            "@id": "schema:ImageObject"
+        },
+        "VideoObject": {
+            "@id": "schema:VideoObject"
+        },
+        "AudioObject": {
+            "@id": "schema:AudoObject"
+        },
+        "Photograph": {
+            "@id": "schema:Photograph"
+        },
+        "Book": {
+            "@id": "schema:Book"
+        },
+        "ArchiveComponent": {
+            "@id": "schema:ArchiveComponent"
+        },
+        "Interview": {
+            "@id": "pied:Interview"
+        },
+        "Monument": {
+            "@id": "pied:Monument"
+        },
+        "VisualArtwork": {
+            "@id": "schema:VisualArtwork"
+        },
+        "Painting": {
+            "@id": "schema:Painting"
+        },
+        "Drawing": {
+            "@id": "schema:Drawing"
+        },
+        "Dataset": {
+            "@id": "schema:Dataset"
+        },
+        "Entity": {
+            "@id": "prov:Entity"
+        },
+        "about": {
+            "@id": "schema:about"
+        },
+        "actor": {
+            "@id": "schema:actor"
+        },
+        "location": {
+            "@id": "schema:location"
+        },
+        "contentLocation": {
+            "@id": "schema:contentLocation"
+        },
+        "contains": {
+            "@id": "pied:contains"
+        },
+        "keywords": {
+            "@id": "schema:keywords"
+        },
+        "birthPlace": {
+            "@id": "schema:birthPlace"
+        },
+        "deathPlace": {
+            "@id": "schema:deathPlace"
+        },
+        "superEvent": {
+            "@id": "schema:superEvent"
+        },
+        "publisher": {
+            "@id": "schema:publisher"
+        },
+        "wasDerivedFrom": {
+            "@id": "prov:wasDerivedFrom"
+        },
+        "name": {
+            "@id": "schema:name"
+        },
+        "description": {
+            "@id": "schema:description"
+        },
+        "identifier": {,
+            "@id": "schema:identifier"
+        },
+        "url": {
+            "@id": "schema:url"
+        },
+        "image": {
+            "@id": "schema:image"
+        },
+        "startDate": {
+            "@id": "schema:startDate"
+        },
+        "endDate": {
+            "@id": "schema:endDate"
+        },
+        "birthDate": {
+            "@id": "schema:birthDate"
+        },
+        "deathDate": {
+            "@id": "schema:deathDate"
+        },
+        "gender": {
+            "@id": "schema:gender"
+        }
+    }
+}
