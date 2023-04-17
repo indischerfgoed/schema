@@ -8,15 +8,15 @@ Hieronder beschrijven we het model in hoofdlijnen. We tonen alleen de types en r
 
 ## Event
 Centraal in het model staat het Event (paars). 
-![Event model](https://github.com/indischerfgoed/schema/event_model.png "Event model")
+![Event model](https://github.com/indischerfgoed/schema/assets/event_model.jpg "Event model")
 
 Het type event specifieren we in een aantal subtypes.
-![Event types](https://github.com/indischerfgoed/schema/event_types.png "Event types")
+![Event types](https://github.com/indischerfgoed/schema/assets/event_types.jpg "Event types")
 
 ## CreativeWork
 De collectie objecten beschouwen we als werken (CreativeWork). 
-![Werk model](https://github.com/indischerfgoed/schema/work_model.png "Werk model")
+![Werk model](https://github.com/indischerfgoed/schema/assets/work_model.jpg "Werk model")
 
 Het type werk specificeren we in een aantal subtypes.
-![Werk types](https://github.com/indischerfgoed/schema/work_types.png "Werk types")
+![Werk types](https://github.com/indischerfgoed/schema/assets/work_types.jpg "Werk types")
 
