@@ -2,7 +2,7 @@
 
 Voor het project indisch erfgoed digitaal gebruiken we een applicatie profiel bestaande uit bestaande schema's, zoals [schema.org](http://schema.org). 
 
-In het schema indisch erfgoed staat een kleine uitbreiding met types en relaties die nog uit in andere schema bestaan.
+In het schema indisch erfgoed staat een kleine uitbreiding met types en relaties die nog niet in andere schema's bestaan.
 
 Hieronder beschrijven we het model in hoofdlijnen. We tonen alleen de types en relaties daartussen. Raadpleeg de volledige documentatie voor meer details, zoals alle attributen voor een type.
 
