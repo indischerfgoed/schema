@@ -15,7 +15,7 @@ pied:Monument a rdfs:Class ;
 pied:Interview a rdfs:Class ;
         rdfs:label "Interview"@nl ;
         rdfs:subClassOf schema:CreativeWork ;
-        rdf:comment "Types voor interviews, zoals oral history."@nl .
+        rdf:comment "Type voor interviews, zoals oral history."@nl .
 
 pied:Story a rdfs:Class ;
         rdfs:label "Verhaal"@nl ;
