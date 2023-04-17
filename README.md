@@ -1,8 +1,6 @@
 # Data model voor project indisch erfgoed digitaal
 
-Voor het project indisch erfgoed digitaal gebruiken we een applicatie profiel bestaande uit bestaande schema's, zoals [schema.org](http://schema.org). 
-
-In het schema indisch erfgoed staat een kleine uitbreiding met types en relaties die nog niet in andere schema's bestaan.
+Voor het project indisch erfgoed digitaal gebruiken we een applicatie profiel dat een aantal bestaande schema's hergebuikt, zoals [schema.org](http://schema.org), [prov-o](https://www.w3.org/TR/prov-o/) en [SKOS](https://www.w3.org/TR/2009/REC-skos-reference-20090818/). Extra types en relaties die nodig zijn voor het indisch ergoed hebben we gedefinieerd als extensie van schema.org. 
 
 Hieronder beschrijven we het model in hoofdlijnen. We tonen alleen de types en relaties daartussen. Raadpleeg de volledige documentatie voor meer details, zoals alle attributen voor een type.
 
