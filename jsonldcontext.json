@@ -124,6 +124,9 @@
         "image": {
             "@id": "schema:image"
         },
+        "jobTitle": {
+            "@id": "schema:jobTitle"
+        },
         "startDate": {
             "@id": "schema:startDate"
         },
