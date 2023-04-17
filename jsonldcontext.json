@@ -91,9 +91,6 @@
         "contentLocation": {
             "@id": "schema:contentLocation"
         },
-        "contains": {
-            "@id": "pied:contains"
-        },
         "keywords": {
             "@id": "schema:keywords"
         },
