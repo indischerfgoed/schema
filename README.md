@@ -20,3 +20,6 @@ De collectie objecten beschouwen we als werken (CreativeWork).
 Het type werk specificeren we in een aantal subtypes.
 ![Werk types](./assets/work_types.jpg "Werk types")
 
+## Person
+![Person model](./assets/person_model.jpg "Person model")
+
