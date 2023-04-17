@@ -115,7 +115,7 @@
         "description": {
             "@id": "schema:description"
         },
-        "identifier": {,
+        "identifier": {
             "@id": "schema:identifier"
         },
         "url": {
