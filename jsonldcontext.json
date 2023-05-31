@@ -1,6 +1,7 @@
 {
     "@context": {
         "pied": "http://schema.indischerfgoed.org/",
+        "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
         "prov": "http://www.w3.org/ns/prov#",
         "schema": "http://schema.org/",
         "skos": "http://www.w3.org/2004/02/skos/core#",
@@ -13,6 +14,9 @@
         "Place": {
             "@id": "schema:Place"
         },
+        "PointofInterest": {
+            "@id": "pied:PointofInterest"
+        },
         "Organization": {
             "@id": "schema:Organization"
         },
@@ -24,6 +28,9 @@
         },
         "Concept": {
             "@id": "skos:Concept"
+        },
+        "DefinedTerm": {
+            "@id": "skos:DefinedTerm"
         },
         "LifeEvent": {
             "@id": "pied:LifeEvent"
@@ -79,6 +86,12 @@
         "Entity": {
             "@id": "prov:Entity"
         },
+        "type": {
+            "@id": "rdf:type"
+        },
+        "additionalType": {
+            "@id": "schema:additionalType"
+        },
         "about": {
             "@id": "schema:about"
         },
@@ -87,6 +100,12 @@
         },
         "location": {
             "@id": "schema:location"
+        },
+        "toLocation": {
+            "@id": "schema:toLocation"
+        },
+        "fromLocation": {
+            "@id": "schema:fromLocation"
         },
         "contentLocation": {
             "@id": "schema:contentLocation"
@@ -112,6 +131,15 @@
         "name": {
             "@id": "schema:name"
         },
+        "alternateName": {
+            "@id": "schema:alternateName"
+        },
+        "givenName": {
+            "@id": "schema:givenName"
+        },
+        "familyName": {
+            "@id": "schema:familyName"
+        },
         "description": {
             "@id": "schema:description"
         },
@@ -121,11 +149,32 @@
         "url": {
             "@id": "schema:url"
         },
+        "citation": {
+            "@id": "schema:citation"
+        },
         "image": {
             "@id": "schema:image"
         },
+        "imageUrl": {
+            "@id": "pied:imageUrl"
+        },
+        "imageSource": {
+            "@id": "pied:imageSource"
+        },
+        "thumbnail": {
+            "@id": "schema:thumbnail"
+        },
         "jobTitle": {
             "@id": "schema:jobTitle"
+        },
+        "memberOf": {
+            "@id": "schema:memberOf"
+        },
+        "member": {
+            "@id": "schema:member"
+        },
+        "dateCreated": {
+            "@id": "schema:dateCreated"
         },
         "startDate": {
             "@id": "schema:startDate"
@@ -133,14 +182,44 @@
         "endDate": {
             "@id": "schema:endDate"
         },
+        "temporal": {
+            "@id": "schema:temporal"
+        },
         "birthDate": {
             "@id": "schema:birthDate"
         },
         "deathDate": {
             "@id": "schema:deathDate"
         },
+        "foundingDate": {
+            "@id": "schema:foundingDate"
+        },
+        "dissolutionDate": {
+            "@id": "schema:dissolutionDate"
+        },
         "gender": {
             "@id": "schema:gender"
+        },
+        "position": {
+            "@id": "schema:position"
+        },
+        "license": {
+            "@id": "schema:license"
+        },
+        "material": {
+            "@id": "schema:material"
+        },
+        "creator": {
+            "@id": "schema:creator"
+        },
+        "contributor": {
+            "@id": "schema:creator"
+        },
+        "isPartOf": {
+            "@id": "schema:isPartOf"
+        },
+        "hasPart": {
+            "@id": "schema:hasPart"
         }
     }
 }
