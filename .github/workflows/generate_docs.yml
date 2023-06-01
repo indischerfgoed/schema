@@ -7,7 +7,7 @@ on:
     branches: [ "main" ]
 
 permissions:
-  contents: read
+  contents: write
 
 jobs:
   build:
@@ -30,4 +30,5 @@ jobs:
     - name: Move docs to Github Pages
       uses: actions/deploy-pages@v2.0.1
       with:
+        folder: doc
         artifact_name: github-pages
