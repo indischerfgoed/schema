@@ -1,6 +1,6 @@
 input = dict(
-  schemas=list(['../schemas', '../schema_ext-indischerfgoed.ttl']),
-  application_profile='../jsonldcontext.jsonld'
+  schemas=list(['./schemas', './schema_ext-indischerfgoed.ttl']),
+  application_profile='./jsonldcontext.jsonld'
 )
 
 output = dict(

@@ -87,7 +87,6 @@ def find_slug(not_a_slug: str, existing_slugs: list[str]) -> str:
     return slug
 
 
-
 def write_to_file(filepath, contents):
     with open(filepath, 'w') as f:
         f.seek(0)
