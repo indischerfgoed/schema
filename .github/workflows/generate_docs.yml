@@ -10,10 +10,13 @@ permissions:
   contents: read
   id-token: write
   pages: write
+  
+concurrency:
+  group: "pages"
+  cancel-in-progress: true
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
 
     steps:
@@ -29,12 +32,22 @@ jobs:
     - name: Build docs
       run: |
         python software/main.py
+    - name: Upload docs as a github-pages artifact
+      uses: actions/upload-pages-artifact@v1
+      with: 
+        path: doc/
     - name: Archive documentation artifacts
       uses: actions/upload-artifact@v3
       with:
         name: generated-docs
         path: doc
-    - name: Move docs to Github Pages
-      uses: actions/deploy-pages@v2.0.1
-      with:
-        artifact_name: generated-docs
+  publish-docs:
+    needs: build
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v1
