@@ -10,34 +10,34 @@
 pied:Monument a rdfs:Class ;
         rdfs:label "Monument"@nl ;
         rdfs:subClassOf schema:CreativeWork ;
-        rdf:comment "Type voor monumenten, zoals herdenkingsmonumenten."@nl .
+        rdfs:comment "Type voor monumenten, zoals herdenkingsmonumenten."@nl .
 
 pied:Interview a rdfs:Class ;
         rdfs:label "Interview"@nl ;
         rdfs:subClassOf schema:CreativeWork ;
-        rdf:comment "Type voor interviews, zoals oral history."@nl .
+        rdfs:comment "Type voor interviews, zoals oral history."@nl .
 
 pied:Story a rdfs:Class ;
         rdfs:label "Verhaal"@nl ;
         rdfs:subClassOf schema:Collection ;
-        rdf:comment "Type voor een verhaal."@nl .
+        rdfs:comment "Type voor een verhaal."@nl .
 
 pied:LifeEvent a rdfs:Class ;
         rdfs:label "Persoonlijk event"@nl ;
         rdfs:subClassOf schema:Event ;
-        rdf:comment "Type voor events in het leven van een pesoon."@nl .
+        rdfs:comment "Type voor events in het leven van een pesoon."@nl .
 
 pied:TransferEvent a rdfs:Class ;
         rdfs:label "Transport event"@nl ;
         rdfs:subClassOf schema:Event ;
-        rdf:comment "Type voor een transport event over land, zee of door de lucht."@en .
+        rdfs:comment "Type voor een transport event over land, zee of door de lucht."@en .
 
 pied:BirthEvent a rdfs:Class ;
         rdfs:label "Geboorte"@nl ;
         rdfs:subClassOf pied:LifeEvent ;
-        rdf:comment "Type voor het geboorte event in het leven van een pesoon."@nl .
+        rdfs:comment "Type voor het geboorte event in het leven van een pesoon."@nl .
 
 pied:DeathEvent a rdfs:Class ;
         rdfs:label "Overlijden"@nl ;
         rdfs:subClassOf pied:LifeEvent ;
-        rdf:comment "Type voor het overlijden event in het leven van een pesoon."@nl .
+        rdfs:comment "Type voor het overlijden event in het leven van een pesoon."@nl .
