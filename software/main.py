@@ -70,12 +70,12 @@ def main():
                 contents += f' - [{readable}]({slug}.md)\n'
 
                 term_contents = term_to_markdown(term, full, predecessors, id_to_slug, ap.id_to_term, schemas)
-                write_to_file(os.path.join(config.output['folder'], slug), term_contents)
+                write_to_file(os.path.join(config.output['folder'], slug + '.md'), term_contents)
 
             else:
                 contents += f' - [{term}]({full})\n'
 
-    write_to_file(os.path.join(config.output['folder'], 'index.md'), contents)
+    write_to_file(os.path.join(config.output['folder'], 'README.md'), contents)
 
 
 def find_slug(not_a_slug: str, existing_slugs: list[str]) -> str:
