@@ -6,6 +6,7 @@ import json
 from application_profile import ApplicationProfile
 import config
 from slugify import slugify
+import markdown
 
 # https://stackoverflow.com/questions/61726754/are-schemadomainincludes-and-rdfsdomain-as-well-as-schemarangeincludes-and-r
 DOMAIN_INCLUDES = 'http://schema.org/domainIncludes'
@@ -70,12 +71,14 @@ def main():
                 contents += f' - [{readable}]({slug}.md)\n'
 
                 term_contents = term_to_markdown(term, full, predecessors, id_to_slug, ap.id_to_term, schemas)
-                write_to_file(os.path.join(config.output['folder'], slug + '.md'), term_contents)
+                html = markdown.markdown(term_contents)
+                write_to_file(os.path.join(config.output['folder'], slug + '.html'), html)
 
             else:
                 contents += f' - [{term}]({full})\n'
 
-    write_to_file(os.path.join(config.output['folder'], 'README.md'), contents)
+    html = markdown.markdown(contents)
+    write_to_file(os.path.join(config.output['folder'], 'index.html'), html)
 
 
 def find_slug(not_a_slug: str, existing_slugs: list[str]) -> str:
