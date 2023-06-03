@@ -68,7 +68,7 @@ def main():
                 readable = term # TODO: get the label from graph perhaps?
                 slug = find_slug(full, id_to_slug.values())
                 id_to_slug[full] = slug
-                contents += f' - [{readable}]({slug}.md)\n'
+                contents += f' - [{readable}]({slug}.html)\n'
 
                 term_contents = term_to_markdown(term, full, predecessors, id_to_slug, ap.id_to_term, schemas)
                 html = markdown.markdown(term_contents)
