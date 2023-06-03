@@ -51,6 +51,9 @@ class ApplicationProfile():
                 terms_per_schema['unknown'].append(term)
                 continue
 
+            if schema_with_longest_overlap == term:
+                continue
+
             terms_per_schema[schema_with_longest_overlap].append(term)
 
         if len(terms_per_schema['unknown']) == 0:

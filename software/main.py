@@ -71,14 +71,12 @@ def main():
                 contents += f' - [{readable}]({slug}.html)\n'
 
                 term_contents = term_to_markdown(term, full, predecessors, id_to_slug, ap.id_to_term, schemas)
-                html = markdown.markdown(term_contents)
-                write_to_file(os.path.join(config.output['folder'], slug + '.html'), html)
+                markdown_to_file(term_contents, slug)
 
             else:
                 contents += f' - [{term}]({full})\n'
 
-    html = markdown.markdown(contents)
-    write_to_file(os.path.join(config.output['folder'], 'index.html'), html)
+    markdown_to_file(contents, 'index')
 
 
 def find_slug(not_a_slug: str, existing_slugs: list[str]) -> str:
@@ -89,12 +87,6 @@ def find_slug(not_a_slug: str, existing_slugs: list[str]) -> str:
         slug = slugify(not_a_slug) + '-' + str(i)
     return slug
 
-
-def write_to_file(filepath, contents):
-    with open(filepath, 'w') as f:
-        f.seek(0)
-        f.write(contents)
-        f.truncate()
 
 def term_to_markdown(term, uri, predecessors, id_to_slug, id_to_term, schemas):
 
@@ -275,6 +267,18 @@ def get_reference(id, node_id_to_slug, node_id_to_human_readable, nested=False):
 def flatten(t: list[list[any]]) -> list[any]:
     return [item for sublist in t for item in sublist]
 
+
+def markdown_to_file(content, filename):
+    path = os.path.join(config.output['folder'], f'{filename}.html')
+    html = markdown.markdown(content, extensions=['tables'])
+    with open(config.input['html_template']) as template:
+        write_to_file(path, template.read().replace('{CONTENT}', html))
+
+def write_to_file(filepath, contents):
+    with open(filepath, 'w') as f:
+        f.seek(0)
+        f.write(contents)
+        f.truncate()
 
 if __name__ == "__main__":
     main()
