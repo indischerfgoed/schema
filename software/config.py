@@ -9,8 +9,8 @@ output = dict(
 )
 
 meta = dict(
-    title='PIED Model',
-    description='...',
+    title='Data model voor Indisch Erfgoed',
+    description='Een beschrijving van je classes en properties zoals gebruikt in de data voor Indisch Erfgoed.\n\nDeze pagina\'s zijn automatisch gegenereerd.',
 )
 
 language = dict(
