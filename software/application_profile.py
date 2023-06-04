@@ -1,7 +1,12 @@
+import json
+import os
 import uuid
 from pyld import jsonld
 
-
+"""
+Loads the application profile from a file and parses it into some
+usefuls dictionaries.
+"""
 class ApplicationProfile():
     # Schemas, maps from term (or: alias) to schema IRI
     schemas = dict()
@@ -11,7 +16,13 @@ class ApplicationProfile():
 
     id_to_term = dict()
 
-    def __init__(self, data):
+    def __init__(self, path):
+        if not (os.path.exists(path) and os.path.isfile(path)):
+            raise Exception('Warning: application profile path does not lead to a file')
+
+        with open(path) as contents:
+            data = json.load(contents)
+
         context = data['@context']
 
         # Mapping objects from the pyld package help us parse the CURIEs and more

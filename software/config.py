@@ -1,7 +1,9 @@
 input = dict(
   schemas=list(['./schemas', './schema_ext-indischerfgoed.ttl']),
   application_profile='./jsonldcontext.jsonld',
-  html_template='./software/template.html'
+  html_template='./software/template.html',
+  domain=['http://www.w3.org/1999/02/22-rdf-syntax-ns#domain', 'http://schema.org/domainIncludes'],
+  range=['http://www.w3.org/1999/02/22-rdf-syntax-ns#range', 'http://schema.org/rangeIncludes'],
 )
 
 output = dict(
