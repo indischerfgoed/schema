@@ -1,6 +1,6 @@
 {
     "@context": {
-        "pied": "http://schema.indischerfgoed.org/",
+        "pied": "https://data.indischherinneringscentrum.nl/schema/",
         "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
         "prov": "http://www.w3.org/ns/prov#",
         "schema": "http://schema.org/",
@@ -36,7 +36,7 @@
             "@id": "pied:LifeEvent"
         },
         "TransferEvent": {
-            "@id": "pied:TansferEvent"
+            "@id": "pied:TransferEvent"
         },
         "BirthEvent": {
             "@id": "pied:BirthEvent"
@@ -54,7 +54,7 @@
             "@id": "schema:VideoObject"
         },
         "AudioObject": {
-            "@id": "schema:AudoObject"
+            "@id": "schema:AudioObject"
         },
         "Photograph": {
             "@id": "schema:Photograph"

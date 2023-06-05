@@ -1,0 +1,5 @@
+.vscode
+software/venv
+software/__pycache__
+software/doc
+doc
