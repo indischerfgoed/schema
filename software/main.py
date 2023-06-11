@@ -135,7 +135,7 @@ def term_to_markdown(term: str, uri: str, slugs: Sluggifier, application_profile
                 p) in application_profile.id_to_term]
 
             if len(indirect_properties) > 0:
-                super_class_term = application_profile.id_to_term[super_class] or super_class
+                super_class_term = application_profile.id_to_term[super_class] if super_class in application_profile.id_to_term else super_class
                 contents += f'*{config.language["SUBCLASSES_OF"]} {super_class_term} {config.language["MAY_HAVE_THE_FOLLOWING_PROPERTIES"]}:*\n\n'
 
                 contents += f'{config.language["PROPERTY"]} | {config.language["EXPECTED_TYPE"]} | {config.language["DESCRIPTION"]}\n--- | --- | ---\n'
