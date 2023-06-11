@@ -9,12 +9,13 @@ usefuls dictionaries.
 """
 class ApplicationProfile():
     # Schemas, maps from term (or: alias) to schema IRI
-    schemas = dict()
+    schemas = dict[str, str]()
 
     # Mappings, from term to the term definition
-    mappings = dict()
+    mappings = dict[str, any]()
 
-    id_to_term = dict()
+    # Maps full IRI to the term in the application profile
+    id_to_term = dict[str, str]()
 
     def __init__(self, path):
         if not (os.path.exists(path) and os.path.isfile(path)):
@@ -34,11 +35,15 @@ class ApplicationProfile():
         self.schemas = {k: v for k, v in context.items() if type(context[k]) == str and (
             context[k].startswith('http://') or context[k].startswith('https://'))}
 
-    def curie_to_full_iri(self, curie):
-        return self.mappings[curie]['@id']
+    # def curie_to_full_iri(self, curie):
+    #     return self.mappings[curie]['@id']
 
-    def full_iri_to_curie(self, iri):
-        return next(k for k, n in self.mappings.items() if n['@id'] == iri)
+    # def full_iri_to_curie(self, iri):
+    #     return next(k for k, n in self.mappings.items() if n['@id'] == iri)
+    
+    """ Whether an IRI is selected by the application profile """
+    def has(self, iri: str) -> bool:
+        return str(iri) in self.id_to_term
 
     def get_terms_per_schema(self):
         terms_per_schema = dict()

@@ -1,7 +1,6 @@
 import os
 import shutil
 from rdflib import URIRef, RDFS, RDF
-import json
 import config
 import markdown
 
@@ -11,53 +10,66 @@ from sluggifier import Sluggifier
 from utils import flatten, write_to_file
 
 
-# https://stackoverflow.com/questions/61726754/are-schemadomainincludes-and-rdfsdomain-as-well-as-schemarangeincludes-and-r
 DOMAIN_INCLUDES = 'http://schema.org/domainIncludes'
 RANGE_INCLUDES = 'http://schema.org/rangeIncludes'
 
-
+""" Loads the application profile and schemas from disk and generates documentation pages. """
 def main():
     # Load application profile
     application_profile = ApplicationProfile(
         config.input['application_profile'])
     # Load schemas
-    schemas = Schemas(config.input['schemas'])
+    schemas = Schemas(config.input['schemas'],
+                      config.input['domain'], config.input['range'])
     # Create slugs for all application profile entries
     slugs = Sluggifier(application_profile)
-    # Now generate the documentation pages
-    generate_pages(application_profile, schemas, slugs)
-
-
-def generate_pages(ap, schemas, slugs: Sluggifier):
     # Create the output directory
     if os.path.exists(config.output['folder']):
         shutil.rmtree(config.output['folder'])
     os.makedirs(config.output['folder'], exist_ok=True)
+    # Generate the documentation pages
+    generate_index_page(application_profile, slugs)
+    generate_term_pages(application_profile, schemas, slugs)
 
-    # Build the index page
-    index_page_contents = f'# {config.meta["title"]}\n{config.meta["description"]}\n'
 
-    # now generate the term pages (id_to_slug is complete now)
-    for s, terms in ap.get_terms_per_schema().items():
+def generate_index_page(application_profile: ApplicationProfile, slugs: Sluggifier):
+    # Write title and description to the index page
+    index_page_contents = f'# {config.meta["title"]}\n'
+    index_page_contents += f'{config.meta["description"]}\n'
+
+    # Loop over all terms per schema and list the terms in those schemas
+    for s, terms in application_profile.get_terms_per_schema().items():
+        # Write the schema name to the index page
         index_page_contents += f'\n\n## {s}\n'
-        if s in ap.schemas:
-            index_page_contents += f'{config.language["THE_BASE_IRI_IS"]}: [{ap.schemas[s]}]({ap.schemas[s]})\n\n'
 
+        # Write the schema base IRI to the index page (unless the schema is 'unknown')
+        if s in application_profile.schemas:
+            index_page_contents += f'{config.language["THE_BASE_IRI_IS"]}: [{application_profile.schemas[s]}]({application_profile.schemas[s]})\n\n'
+
+        # Write all terms in this schema to the index page
         for term in sorted(terms):
-            full = ap.mappings[term]['@id']
+            full = application_profile.mappings[term]['@id']
             index_page_contents += f' - [{term}]({slugs.transform(full)})\n'
-
-        for term in sorted(terms):
-            if term in ap.mappings:
-                full = ap.mappings[term]['@id']
-                term_contents = term_to_markdown(
-                    term, full, slugs, ap, schemas)
-                markdown_to_file(term_contents, slugs.transform(full))
 
     markdown_to_file(index_page_contents, 'index.html')
 
 
+def generate_term_pages(application_profile: ApplicationProfile, schemas: Schemas, slugs: Sluggifier):
+    for terms in application_profile.get_terms_per_schema().values():
+        # Generate the documentation page for this specific term
+        for term in sorted(terms):
+            full = application_profile.mappings[term]['@id']
+            term_contents = term_to_markdown(
+                term, full, slugs, application_profile, schemas)
+            markdown_to_file(term_contents, slugs.transform(full))
+
+""" Generates a Markdown page for a given term """
 def term_to_markdown(term: str, uri: str, slugs: Sluggifier, application_profile: ApplicationProfile, schemas: Schemas):
+
+    """ Returns a Markdown link to the given IRI """
+    def get_reference(iri: str) -> str:
+        name = application_profile.id_to_term[iri] if iri in application_profile.id_to_term else iri
+        return f"[{name}]({slugs.transform(iri)})"
 
     classes = schemas.get_classes(uri)
 
@@ -71,8 +83,7 @@ def term_to_markdown(term: str, uri: str, slugs: Sluggifier, application_profile
 
     breadcrumbs = schemas.get_breadcrumbs(uri)
     for bc in breadcrumbs:
-        contents += ' > '.join([get_reference(str(c), slugs,
-                               application_profile.id_to_term) for c in bc]) + '\n'
+        contents += ' > '.join([get_reference(str(c)) for c in bc]) + '\n'
     contents += '\n'
 
     # DESCRIPTION
@@ -86,26 +97,23 @@ def term_to_markdown(term: str, uri: str, slugs: Sluggifier, application_profile
 
         contents += f'### {config.language["PROPERTIES"]}\n\n'
 
-        direct_properties_in_schemas = [s for s in schemas.graph.subjects(RDFS.domain, URIRef(
-            uri))] + [s for s in schemas.graph.subjects(URIRef(DOMAIN_INCLUDES), URIRef(uri))]
-        direct_properties = [p for p in direct_properties_in_schemas if str(
-            p) in application_profile.id_to_term]
+        # All properties for this class that are also in the application profile
+        properties = [p for p in schemas.get_properties_for_class(
+            uri) if application_profile.has(p)]
 
-        if len(direct_properties) > 0:
+        if len(properties) > 0:
             contents += f'*{config.language["INSTANCES_OF"]} {term} {config.language["MAY_HAVE_THE_FOLLOWING_PROPERTIES"]}:*\n\n'
 
             contents += f'{config.language["PROPERTY"]} | {config.language["EXPECTED_TYPE"]} | {config.language["DESCRIPTION"]}\n--- | --- | ---\n'
 
-            for prop in direct_properties:
+            for prop in properties:
                 # Property (with link)
-                contents += get_reference(str(prop), slugs,
-                                          application_profile.id_to_term) + ' | '
+                contents += get_reference(str(prop)) + ' | '
 
                 # Range (with links)
                 range = [o for o in schemas.graph.objects(
                     prop, RDFS.range)] + [o for o in schemas.graph.objects(prop, URIRef(RANGE_INCLUDES))]
-                contents += ', '.join(map(lambda r: get_reference(str(r),
-                                      slugs, application_profile.id_to_term), range)) + ' | '
+                contents += ', '.join(map(lambda r: get_reference(str(r)), range)) + ' | '
 
                 # Description
                 comments = [o for o in schemas.graph.objects(
@@ -117,32 +125,29 @@ def term_to_markdown(term: str, uri: str, slugs: Sluggifier, application_profile
             contents += '\n'
 
         else:
-            contents += f'{config.language["NO_DIRECT_PROPERTIES"]}\n'
+            contents += f'{config.language["NO_DIRECT_PROPERTIES"]}\n\n'
 
         super_classes = list(filter(lambda x: x != uri, list(
             dict.fromkeys(flatten(breadcrumbs)[::-1]))))
 
         for super_class in super_classes:
-            indirect_properties_in_schemas = [s for s in schemas.graph.subjects(RDFS.domain, URIRef(
-                super_class))] + [s for s in schemas.graph.subjects(URIRef(DOMAIN_INCLUDES), URIRef(super_class))]
-            indirect_properties = [p for p in indirect_properties_in_schemas if str(
+            indirect_properties = [p for p in schemas.get_properties_for_class(super_class) if str(
                 p) in application_profile.id_to_term]
 
             if len(indirect_properties) > 0:
-                contents += f'*{config.language["SUBCLASSES_OF"]} {super_class} {config.language["MAY_HAVE_THE_FOLLOWING_PROPERTIES"]}:*\n\n'
+                super_class_term = application_profile.id_to_term[super_class] or super_class
+                contents += f'*{config.language["SUBCLASSES_OF"]} {super_class_term} {config.language["MAY_HAVE_THE_FOLLOWING_PROPERTIES"]}:*\n\n'
 
                 contents += f'{config.language["PROPERTY"]} | {config.language["EXPECTED_TYPE"]} | {config.language["DESCRIPTION"]}\n--- | --- | ---\n'
 
                 for prop in indirect_properties:
                     # Property (with link)
-                    contents += get_reference(str(prop), slugs,
-                                              application_profile.id_to_term) + ' | '
+                    contents += get_reference(str(prop)) + ' | '
 
                     # Range (with links)
                     range = [o for o in schemas.graph.objects(
                         prop, RDFS.range)] + [o for o in schemas.graph.objects(prop, URIRef(RANGE_INCLUDES))]
-                    contents += ', '.join(map(lambda r: get_reference(
-                        str(r), slugs, application_profile.id_to_term), range)) + ' | '
+                    contents += ', '.join(map(lambda r: get_reference(str(r)), range)) + ' | '
 
                     # Description
                     comments = [o for o in schemas.graph.objects(
@@ -155,10 +160,7 @@ def term_to_markdown(term: str, uri: str, slugs: Sluggifier, application_profile
 
         # RANGE
 
-        range_in_schemas = [s for s in schemas.graph.subjects(RDFS.range, URIRef(
-            uri))] + [s for s in schemas.graph.subjects(URIRef(RANGE_INCLUDES), URIRef(uri))]
-        range = [p for p in range_in_schemas if str(
-            p) in application_profile.id_to_term]
+        range = [p for p in schemas.get_range(uri) if application_profile.has(p)]
 
         if len(range) > 0:
 
@@ -168,14 +170,12 @@ def term_to_markdown(term: str, uri: str, slugs: Sluggifier, application_profile
             contents += f'{config.language["PROPERTY"]} | {config.language["ON_TYPE"]} | {config.language["DESCRIPTION"]}\n--- | --- | ---\n'
 
             for property in range:
-                ref = get_reference(str(property), slugs,
-                                    application_profile.id_to_term)
+                ref = get_reference(str(property))
                 domain_in_schemas = [o for o in schemas.graph.objects(
                     property, RDFS.domain)] + [o for o in schemas.graph.objects(property, URIRef(DOMAIN_INCLUDES))]
                 domain = [p for p in domain_in_schemas if str(
                     p) in application_profile.id_to_term]
-                domain_str = ', '.join(map(lambda d: get_reference(
-                    str(d), slugs, application_profile.id_to_term), domain))
+                domain_str = ', '.join(map(lambda d: get_reference(str(d)), domain))
 
                 label = '. '.join(schemas.graph.objects(
                     property, RDFS.comment)) or ''
@@ -184,11 +184,8 @@ def term_to_markdown(term: str, uri: str, slugs: Sluggifier, application_profile
             contents += '\n'
 
         # SUBCLASSES
-
-        more_specific_in_schemas = [
-            s for s in schemas.graph.subjects(RDFS.subClassOf, URIRef(uri))]
-        more_specific = [p for p in more_specific_in_schemas if str(
-            p) in application_profile.id_to_term]
+        
+        more_specific = [p for p in schemas.get_subclasses(uri) if application_profile.has(p)]
 
         if len(more_specific) > 0:
             contents += f'### {config.language["MORE_SPECIFIC_TYPES"]}\n\n'
@@ -196,8 +193,7 @@ def term_to_markdown(term: str, uri: str, slugs: Sluggifier, application_profile
 
             contents += f'{config.language["CLASS"]} | {config.language["DESCRIPTION"]}\n--- | ---\n'
             for c in more_specific:
-                ref = get_reference(
-                    str(c), slugs, application_profile.id_to_term)
+                ref = get_reference(str(c))
                 label = '. '.join(schemas.graph.objects(c, RDFS.comment)) or ''
                 contents += f"{ref} | {label} \n"
 
@@ -216,13 +212,12 @@ def term_to_markdown(term: str, uri: str, slugs: Sluggifier, application_profile
             contents += f'{config.language["PROPERTY_USED_ON_THESE_TYPES"]}\n\n'
             for item in domain:
                 contents += ' - ' + \
-                    get_reference(str(item), slugs,
-                                  application_profile.id_to_term) + '\n'
+                    get_reference(str(item)) + '\n'
             contents += '\n\n\n'
 
         range_in_schemas = [o for o in schemas.graph.objects(URIRef(
             uri), RDFS.range)] + [o for o in schemas.graph.objects(URIRef(uri), URIRef(RANGE_INCLUDES))]
-        range = [p for p in domain_in_schemas if str(
+        range = [p for p in range_in_schemas if str(
             p) in application_profile.id_to_term]
 
         if len(range) > 0:
@@ -230,25 +225,19 @@ def term_to_markdown(term: str, uri: str, slugs: Sluggifier, application_profile
             contents += f'{config.language["VALUES_ARE_OF_THESE_TYPES"]}\n\n'
             for item in range:
                 contents += ' - ' + \
-                    get_reference(str(item), slugs,
-                                  application_profile.id_to_term) + '\n'
+                    get_reference(str(item)) + '\n'
             contents += '\n\n\n'
 
     return contents
 
 
-def get_reference(id: str, slugs: Sluggifier, node_id_to_human_readable):
-    name = node_id_to_human_readable[id] if id in node_id_to_human_readable else id
-    return f"[{name}]({slugs.transform(id)})"
 
-
-
+""" Saves a Markdown string as an HTML file """
 def markdown_to_file(content: str, filename: str):
     path = os.path.join(config.output['folder'], filename)
     html = markdown.markdown(content, extensions=['tables'])
     with open(config.input['html_template']) as template:
         write_to_file(path, template.read().replace('{CONTENT}', html))
-
 
 
 if __name__ == "__main__":

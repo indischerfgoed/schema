@@ -1,9 +1,12 @@
+from rdflib import RDFS
+
 input = dict(
-  schemas=list(['./schemas', './schema_ext-indischerfgoed.ttl']),
-  application_profile='./jsonldcontext.jsonld',
-  html_template='./software/template.html',
-  domain=['http://www.w3.org/1999/02/22-rdf-syntax-ns#domain', 'http://schema.org/domainIncludes'],
-  range=['http://www.w3.org/1999/02/22-rdf-syntax-ns#range', 'http://schema.org/rangeIncludes'],
+    schemas=list(['./schemas', './schema_ext-indischerfgoed.ttl']),
+    application_profile='./jsonldcontext.jsonld',
+    html_template='./software/template.html',
+    # https://stackoverflow.com/questions/61726754/are-schemadomainincludes-and-rdfsdomain-as-well-as-schemarangeincludes-and-r
+    domain=[str(RDFS.domain), 'http://schema.org/domainIncludes'],
+    range=[str(RDFS.range), 'http://schema.org/rangeIncludes'],
 )
 
 output = dict(
@@ -38,5 +41,5 @@ language = dict(
     RANGE_INCLUDES='Range includes',
     EXPECTED_TYPE='Verwacht type',
     THE_BASE_IRI_IS='De IRI van dit schema is',
-    NO_DIRECT_PROPERTIES='Deze class heeft geen directe properties',
+    NO_DIRECT_PROPERTIES='Deze class heeft geen directe properties.',
 )

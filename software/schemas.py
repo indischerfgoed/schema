@@ -4,7 +4,7 @@ from rdflib import Graph, URIRef, RDFS, RDF
 
 class Schemas():
 
-    def __init__(self, paths):
+    def __init__(self, paths, domain: list[str] = [str(RDFS.domain)], range: list[str] = [str(RDFS.range)]):
         # Load schemas from config into a graph
         self.graph = Graph()
         queue = paths.copy()
@@ -23,9 +23,27 @@ class Schemas():
             str(s): [str(o) for o in self.graph.objects(s, RDFS.subClassOf)] for s in self.graph.subjects(RDFS.subClassOf, None)
         }
 
+        self.domain = domain
+        self.range = range
+
     """ Get all classes for a given URI """
-    def get_classes(self, uri: str) -> list[str]:
-        return [o for o in self.graph.objects(URIRef(uri), RDF.type)]
+    def get_classes(self, iri: str) -> list[str]:
+        return [o for o in self.graph.objects(URIRef(iri), RDF.type)]
+    
+    def get_properties_for_class(self, class_iri: str) -> list[str]:
+        result = []
+        for domain in self.domain:
+            result += [s for s in self.graph.subjects(URIRef(domain), URIRef(class_iri))]
+        return result
+    
+    def get_range(self, iri: str) -> list[str]:
+        result = []
+        for range in self.range:
+            result += [o for o in self.graph.objects(URIRef(iri), URIRef(range))]
+        return result
+    
+    def get_subclasses(self, iri: str) -> list[str]:
+        return [s for s in self.graph.subjects(RDFS.subClassOf, URIRef(iri))]
 
     def get_breadcrumbs(self, id: str):
         if id not in self.predecessors:
