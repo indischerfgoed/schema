@@ -91,6 +91,7 @@ def term_to_markdown(term: str, uri: str, slugs: Sluggifier, application_profile
     for o in schemas.graph.objects(URIRef(uri), RDFS.comment):
         contents += '\n' + str(o) + '\n\n'
 
+    # The item is a Class
     if RDFS.Class in classes:
 
         # PROPERTIES
@@ -98,8 +99,7 @@ def term_to_markdown(term: str, uri: str, slugs: Sluggifier, application_profile
         contents += f'### {config.language["PROPERTIES"]}\n\n'
 
         # All properties for this class that are also in the application profile
-        properties = [p for p in schemas.get_properties_for_class(
-            uri) if application_profile.has(p)]
+        properties = application_profile.filter(schemas.get_properties_with_class_as_domain(uri))
 
         if len(properties) > 0:
             contents += f'*{config.language["INSTANCES_OF"]} {term} {config.language["MAY_HAVE_THE_FOLLOWING_PROPERTIES"]}:*\n\n'
@@ -111,13 +111,11 @@ def term_to_markdown(term: str, uri: str, slugs: Sluggifier, application_profile
                 contents += get_reference(str(prop)) + ' | '
 
                 # Range (with links)
-                range = [o for o in schemas.graph.objects(
-                    prop, RDFS.range)] + [o for o in schemas.graph.objects(prop, URIRef(RANGE_INCLUDES))]
+                range = application_profile.filter(schemas.get_range(prop, with_subclasses = True))
                 contents += ', '.join(map(lambda r: get_reference(str(r)), range)) + ' | '
 
                 # Description
-                comments = [o for o in schemas.graph.objects(
-                    prop, RDFS.comment)]
+                comments = schemas.get_comment(prop)
                 contents += ' | '.join(comments).replace('\n', '')
 
                 contents += '\n'
@@ -127,12 +125,13 @@ def term_to_markdown(term: str, uri: str, slugs: Sluggifier, application_profile
         else:
             contents += f'{config.language["NO_DIRECT_PROPERTIES"]}\n\n'
 
+        # INHERITED PROPERTIES
+
         super_classes = list(filter(lambda x: x != uri, list(
             dict.fromkeys(flatten(breadcrumbs)[::-1]))))
 
         for super_class in super_classes:
-            indirect_properties = [p for p in schemas.get_properties_for_class(super_class) if str(
-                p) in application_profile.id_to_term]
+            indirect_properties = application_profile.filter(schemas.get_properties_with_class_as_domain(super_class))
 
             if len(indirect_properties) > 0:
                 super_class_term = application_profile.id_to_term[super_class] if super_class in application_profile.id_to_term else super_class
@@ -145,13 +144,11 @@ def term_to_markdown(term: str, uri: str, slugs: Sluggifier, application_profile
                     contents += get_reference(str(prop)) + ' | '
 
                     # Range (with links)
-                    range = [o for o in schemas.graph.objects(
-                        prop, RDFS.range)] + [o for o in schemas.graph.objects(prop, URIRef(RANGE_INCLUDES))]
+                    range = application_profile.filter(schemas.get_range(prop, with_subclasses = True))
                     contents += ', '.join(map(lambda r: get_reference(str(r)), range)) + ' | '
 
                     # Description
-                    comments = [o for o in schemas.graph.objects(
-                        prop, RDFS.comment)]
+                    comments = schemas.get_comment(prop)
                     contents += ' | '.join(comments).replace('\n', '')
 
                     contents += '\n'
@@ -160,7 +157,7 @@ def term_to_markdown(term: str, uri: str, slugs: Sluggifier, application_profile
 
         # RANGE
 
-        range = [p for p in schemas.get_range(uri) if application_profile.has(p)]
+        range = application_profile.filter(schemas.get_properties_with_class_as_range(uri, with_subclasses = True))
 
         if len(range) > 0:
 
@@ -171,21 +168,18 @@ def term_to_markdown(term: str, uri: str, slugs: Sluggifier, application_profile
 
             for property in range:
                 ref = get_reference(str(property))
-                domain_in_schemas = [o for o in schemas.graph.objects(
-                    property, RDFS.domain)] + [o for o in schemas.graph.objects(property, URIRef(DOMAIN_INCLUDES))]
-                domain = [p for p in domain_in_schemas if str(
-                    p) in application_profile.id_to_term]
+
+                domain = application_profile.filter(schemas.get_domain(property, with_subclasses = True))
                 domain_str = ', '.join(map(lambda d: get_reference(str(d)), domain))
 
-                label = '. '.join(schemas.graph.objects(
-                    property, RDFS.comment)) or ''
+                label = '. '.join(schemas.get_comment(property)) or ''
                 contents += f"{ref} | {domain_str} | {label} \n"
 
             contents += '\n'
 
         # SUBCLASSES
         
-        more_specific = [p for p in schemas.get_subclasses(uri) if application_profile.has(p)]
+        more_specific = application_profile.filter(schemas.get_subclasses(uri))
 
         if len(more_specific) > 0:
             contents += f'### {config.language["MORE_SPECIFIC_TYPES"]}\n\n'
@@ -194,7 +188,7 @@ def term_to_markdown(term: str, uri: str, slugs: Sluggifier, application_profile
             contents += f'{config.language["CLASS"]} | {config.language["DESCRIPTION"]}\n--- | ---\n'
             for c in more_specific:
                 ref = get_reference(str(c))
-                label = '. '.join(schemas.graph.objects(c, RDFS.comment)) or ''
+                label = '. '.join(schemas.get_comment(c)) or ''
                 contents += f"{ref} | {label} \n"
 
             contents += '\n\n\n'
@@ -202,10 +196,7 @@ def term_to_markdown(term: str, uri: str, slugs: Sluggifier, application_profile
         contents += '\n\n\n'
 
     if RDF.Property in classes:
-        domain_in_schemas = [o for o in schemas.graph.objects(URIRef(
-            uri), RDFS.domain)] + [o for o in schemas.graph.objects(URIRef(uri), URIRef(DOMAIN_INCLUDES))]
-        domain = [p for p in domain_in_schemas if str(
-            p) in application_profile.id_to_term]
+        domain = application_profile.filter(schemas.get_domain(uri, with_subclasses = True))
 
         if len(domain) > 0:
             contents += f'### {config.language["DOMAIN"]}\n'
@@ -214,11 +205,8 @@ def term_to_markdown(term: str, uri: str, slugs: Sluggifier, application_profile
                 contents += ' - ' + \
                     get_reference(str(item)) + '\n'
             contents += '\n\n\n'
-
-        range_in_schemas = [o for o in schemas.graph.objects(URIRef(
-            uri), RDFS.range)] + [o for o in schemas.graph.objects(URIRef(uri), URIRef(RANGE_INCLUDES))]
-        range = [p for p in range_in_schemas if str(
-            p) in application_profile.id_to_term]
+        
+        range = application_profile.filter(schemas.get_range(uri))
 
         if len(range) > 0:
             contents += f'### {config.language["RANGE"]}\n'
@@ -237,7 +225,7 @@ def markdown_to_file(content: str, filename: str):
     path = os.path.join(config.output['folder'], filename)
     html = markdown.markdown(content, extensions=['tables'])
     with open(config.input['html_template']) as template:
-        write_to_file(path, template.read().replace('{CONTENT}', html))
+        write_to_file(path, template.read().replace('{CONTENT}', html).replace('{TITLE}', config.meta['title']))
 
 
 if __name__ == "__main__":

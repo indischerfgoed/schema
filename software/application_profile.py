@@ -2,6 +2,7 @@ import json
 import os
 import uuid
 from pyld import jsonld
+from rdflib import URIRef
 
 """
 Loads the application profile from a file and parses it into some
@@ -42,8 +43,12 @@ class ApplicationProfile():
     #     return next(k for k, n in self.mappings.items() if n['@id'] == iri)
     
     """ Whether an IRI is selected by the application profile """
-    def has(self, iri: str) -> bool:
+    def has(self, iri: str | URIRef) -> bool:
         return str(iri) in self.id_to_term
+
+    """ Filters a list of IRIs down to only those that are in the application profile """
+    def filter(self, iris: list[str | URIRef]) -> list[str]:
+        return [str(iri) for iri in iris if self.has(iri)]
 
     def get_terms_per_schema(self):
         terms_per_schema = dict()
@@ -76,8 +81,7 @@ class ApplicationProfile():
             del terms_per_schema['unknown']
 
         return terms_per_schema
-
-
+    
     def _get_mappings_from_context(self, data):
         active_ctx = {'_uuid': str(
             uuid.uuid1()), 'processingMode': 'json-ld-1.1', 'mappings': {}}

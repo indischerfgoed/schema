@@ -1,5 +1,6 @@
 import os
 from rdflib import Graph, URIRef, RDFS, RDF
+from utils import flatten
 
 
 class Schemas():
@@ -30,20 +31,44 @@ class Schemas():
     def get_classes(self, iri: str) -> list[str]:
         return [o for o in self.graph.objects(URIRef(iri), RDF.type)]
     
-    def get_properties_for_class(self, class_iri: str) -> list[str]:
+    def get_properties_with_class_as_domain(self, class_iri: str) -> list[str]:
         result = []
         for domain in self.domain:
             result += [s for s in self.graph.subjects(URIRef(domain), URIRef(class_iri))]
         return result
     
-    def get_range(self, iri: str) -> list[str]:
+    def get_properties_with_class_as_range(self, class_iri: str, with_subclasses = False) -> list[str]:
+        result = []
+        for range in self.range:
+            result += [s for s in self.graph.subjects(URIRef(range), URIRef(class_iri))]
+        if with_subclasses:
+            return self._with_subclasses(result)
+        else:
+            return result
+
+    def get_range(self, iri: str, with_subclasses = False) -> list[str]:
         result = []
         for range in self.range:
             result += [o for o in self.graph.objects(URIRef(iri), URIRef(range))]
-        return result
+        if with_subclasses:
+            return self._with_subclasses(result)
+        else:
+            return result
+
+    def get_domain(self, iri: str, with_subclasses = False) -> list[str]:
+        result = []
+        for domain in self.domain:
+            result += [o for o in self.graph.objects(URIRef(iri), URIRef(domain))]
+        if with_subclasses:
+            return self._with_subclasses(result)
+        else:
+            return result
     
     def get_subclasses(self, iri: str) -> list[str]:
         return [s for s in self.graph.subjects(RDFS.subClassOf, URIRef(iri))]
+    
+    def get_comment(self, iri: str) -> list[str]:
+        return [o for o in self.graph.objects(URIRef(iri), RDFS.comment)]
 
     def get_breadcrumbs(self, id: str):
         if id not in self.predecessors:
@@ -58,3 +83,7 @@ class Schemas():
                 bc.extend([id])
                 breadcrumbs.append(bc)
         return breadcrumbs
+    
+    def _with_subclasses(self, iris: list[str]) -> list[str]:
+        return flatten([[iri] + self.get_subclasses(iri) for iri in iris])
+
