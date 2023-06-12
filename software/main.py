@@ -10,9 +10,6 @@ from sluggifier import Sluggifier
 from utils import flatten, write_to_file
 
 
-DOMAIN_INCLUDES = 'http://schema.org/domainIncludes'
-RANGE_INCLUDES = 'http://schema.org/rangeIncludes'
-
 """ Loads the application profile and schemas from disk and generates documentation pages. """
 def main():
     # Load application profile
