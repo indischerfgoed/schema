@@ -3,3 +3,4 @@ software/venv
 software/__pycache__
 software/doc
 doc
+.DS_Store
