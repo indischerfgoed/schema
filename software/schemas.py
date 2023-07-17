@@ -69,6 +69,9 @@ class Schemas():
     
     def get_comment(self, iri: str) -> list[str]:
         return [o for o in self.graph.objects(URIRef(iri), RDFS.comment)]
+    
+    def get_label(self, iri: str) -> list[str]:
+        return [o for o in self.graph.objects(URIRef(iri), RDFS.label)]
 
     def get_breadcrumbs(self, id: str):
         if id not in self.predecessors:

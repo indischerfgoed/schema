@@ -66,7 +66,13 @@ def term_to_markdown(term: str, uri: str, slugs: Sluggifier, application_profile
 
     """ Returns a Markdown link to the given IRI """
     def get_reference(iri: str) -> str:
-        name = application_profile.id_to_term[iri] if iri in application_profile.id_to_term else iri
+        if iri in application_profile.id_to_term:
+            name = application_profile.id_to_term[iri]
+        else:
+            labels = schemas.get_label(iri)
+            name = labels[0] if len(labels) > 0 else iri
+            name += ' &#x2197;'
+
         return f"[{name}]({slugs.transform(iri)})"
 
     classes = schemas.get_classes(uri)
@@ -108,8 +114,12 @@ def term_to_markdown(term: str, uri: str, slugs: Sluggifier, application_profile
                 contents += get_reference(str(prop)) + ' | '
 
                 # Range (with links)
-                range = application_profile.filter(schemas.get_range(prop, with_subclasses = True))
-                contents += ', '.join(map(lambda r: get_reference(str(r)), range)) + ' | '
+                range = schemas.get_range(prop, with_subclasses = False)
+                range_in_profile = application_profile.filter(range)
+                range_out_of_profile = list(filter(lambda iri: str(iri) not in range_in_profile, range))
+                contents += ', '.join(map(lambda r: get_reference(str(r)), range_in_profile))
+                contents += ', '.join(map(lambda r: get_reference(str(r)), range_out_of_profile))
+                contents += ' | '
 
                 # Description
                 comments = schemas.get_comment(prop)
@@ -143,8 +153,12 @@ def term_to_markdown(term: str, uri: str, slugs: Sluggifier, application_profile
                     contents += get_reference(str(prop)) + ' | '
 
                     # Range (with links)
-                    range = application_profile.filter(schemas.get_range(prop, with_subclasses = True))
-                    contents += ', '.join(map(lambda r: get_reference(str(r)), range)) + ' | '
+                    range = schemas.get_range(prop, with_subclasses = False)
+                    range_in_profile = application_profile.filter(range)
+                    range_out_of_profile = list(filter(lambda iri: str(iri) not in range_in_profile, range))
+                    contents += ', '.join(map(lambda r: get_reference(str(r)), range_in_profile))
+                    contents += ', '.join(map(lambda r: get_reference(str(r)), range_out_of_profile))
+                    contents += ' | '
 
                     # Description
                     comments = schemas.get_comment(prop)
