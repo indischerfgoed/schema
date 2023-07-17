@@ -51,6 +51,20 @@
         margin-top: -6px;
         margin-bottom: 24px;
       }
+
+      header {
+        margin-bottom: 56px;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+      }
+      header span {
+        font-weight: 500;
+        font-size: 18px;
+      }
+      nav a {
+        margin-left: 12px;
+      }
     </style>
 
     <link rel="preload" href="https://fonts.googleapis.com/css?family=Roboto:400,500" as="style" onload="this.onload=null;this.rel='stylesheet'">
@@ -58,6 +72,14 @@
   </head>
 
   <body>
+
+    <header>
+      <span>{TITLE}</span>
+      <nav>
+        <a href="./index.html">Classes</a>
+        <a href="./schemas.html">Schemas</a>
+      </nav>  
+    </header>
 
 {CONTENT}
 

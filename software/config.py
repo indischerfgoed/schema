@@ -15,13 +15,13 @@ output = dict(
 
 meta = dict(
     title='Application profile for Indisch Erfgoed',
-    subtitle='These pages are automatically generated.',
-    description='The set of classes and properties used for Indisch Erfgoed.',
+    description='This is automatically generated documentation of the application profile for the Project Indisch Erfgoed Digitaal.',
 )
 
 language = dict(
     CLASSES='Classes',
     CLASS='Class',
+    CLASS_TREE='Class tree',
     PROPERTIES_FROM='Properties from',
     INSTANCES='Instances',
     GO_BACK='Go back',

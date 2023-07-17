@@ -1,5 +1,5 @@
 import os
-from rdflib import Graph, URIRef, RDFS, RDF
+from rdflib import Graph, URIRef, RDFS, RDF, OWL
 from utils import flatten
 
 
@@ -30,6 +30,9 @@ class Schemas():
     """ Get all classes for a given URI """
     def get_classes(self, iri: str) -> list[str]:
         return [o for o in self.graph.objects(URIRef(iri), RDF.type)]
+    
+    def get_all_classes(self) -> list[str]:
+        return list(set([str(s) for s in self.graph.subjects(RDF.type, RDFS.Class)] + [str(s) for s in self.graph.subjects(RDF.type, OWL.Class)]))
     
     def get_properties_with_class_as_domain(self, class_iri: str) -> list[str]:
         result = []
@@ -66,6 +69,11 @@ class Schemas():
     
     def get_subclasses(self, iri: str) -> list[str]:
         return [s for s in self.graph.subjects(RDFS.subClassOf, URIRef(iri))]
+    
+    def get_superclasses(self, iri: str) -> list[str]:
+        if iri == 'http://schema.org/Photograph':
+            print(iri)
+        return [o for o in self.graph.objects(URIRef(iri), RDFS.subClassOf)]
     
     def get_comment(self, iri: str) -> list[str]:
         return [o for o in self.graph.objects(URIRef(iri), RDFS.comment)]

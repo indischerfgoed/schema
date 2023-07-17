@@ -25,31 +25,60 @@ def main():
         shutil.rmtree(config.output['folder'])
     os.makedirs(config.output['folder'], exist_ok=True)
     # Generate the documentation pages
-    generate_index_page(application_profile, slugs)
+    generate_index_pages(application_profile, schemas, slugs)
     generate_term_pages(application_profile, schemas, slugs)
 
 
-def generate_index_page(application_profile: ApplicationProfile, slugs: Sluggifier):
+def generate_index_pages(application_profile: ApplicationProfile, schemas: Schemas, slugs: Sluggifier):
     # Write title and description to the index page
-    index_page_contents = f'# {config.meta["title"]}\n'
-    index_page_contents += f'{config.meta["subtitle"]}\n\n'
-    index_page_contents += f'{config.meta["description"]}\n'
+    index_page_contents = f'{config.meta["description"]}\n\n'
 
+    # Get all classes in the schemas
+    classes = schemas.get_all_classes()
+
+    # Keep only those in AP
+    classes_in_profile = application_profile.filter(classes)
+
+    # Find the classes without a superclass in the AP (roots)
+    roots = list(filter(lambda c: len(application_profile.filter(schemas.get_superclasses(c))) == 0, classes_in_profile))
+
+
+    def _build_tree_component(iri: str, indent = ''):
+        term = application_profile.id_to_term[iri]
+        res = f'{indent}- [{term}]({slugs.transform(iri)})\n'
+        sub_classes = application_profile.filter(schemas.get_subclasses(iri))
+        for sub_class in sub_classes:
+            res += _build_tree_component(sub_class, indent + '    ')
+        return res
+
+    index_page_contents += f'#### {config.language["CLASS_TREE"]}:\n\n'
+
+    # For each of these, list their subclasses
+    for root in sorted(roots, key = lambda r: application_profile.id_to_term[r]):
+        term = application_profile.id_to_term[root]
+        index_page_contents += _build_tree_component(root)
+
+
+
+    markdown_to_file(index_page_contents, 'index.html')
+
+
+    schemas_index_page_contents = ''
     # Loop over all terms per schema and list the terms in those schemas
     for s, terms in application_profile.get_terms_per_schema().items():
         # Write the schema name to the index page
-        index_page_contents += f'\n\n## {s}\n'
+        schemas_index_page_contents += f'\n\n## {s}\n'
 
         # Write the schema base IRI to the index page (unless the schema is 'unknown')
         if s in application_profile.schemas:
-            index_page_contents += f'{config.language["THE_BASE_IRI_IS"]}: [{application_profile.schemas[s]}]({application_profile.schemas[s]})\n\n'
+            schemas_index_page_contents += f'{config.language["THE_BASE_IRI_IS"]}: [{application_profile.schemas[s]}]({application_profile.schemas[s]})\n\n'
 
         # Write all terms in this schema to the index page
         for term in sorted(terms):
             full = application_profile.mappings[term]['@id']
-            index_page_contents += f' - [{term}]({slugs.transform(full)})\n'
+            schemas_index_page_contents += f' - [{term}]({slugs.transform(full)})\n'
 
-    markdown_to_file(index_page_contents, 'index.html')
+    markdown_to_file(schemas_index_page_contents, 'schemas.html')
 
 
 def generate_term_pages(application_profile: ApplicationProfile, schemas: Schemas, slugs: Sluggifier):
