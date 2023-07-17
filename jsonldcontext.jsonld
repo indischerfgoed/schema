@@ -14,9 +14,6 @@
         "Place": {
             "@id": "schema:Place"
         },
-        "PointofInterest": {
-            "@id": "pied:PointofInterest"
-        },
         "Organization": {
             "@id": "schema:Organization"
         },
