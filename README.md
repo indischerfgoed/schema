@@ -1,10 +1,10 @@
-# Data model voor project indisch erfgoed digitaal
+# Applicatie profiel voor het Project Indisch Erfgoed Digitaal
 
-Voor het project indisch erfgoed digitaal gebruiken we een [applicatie profiel](./jsonldcontext.jsonld) dat een aantal bestaande schema's hergebuikt, zoals [schema.org](http://schema.org), [prov-o](https://www.w3.org/TR/prov-o/) en [SKOS](https://www.w3.org/TR/2009/REC-skos-reference-20090818/). Extra types en relaties die nodig zijn voor het indisch ergoed hebben we gedefinieerd als [extensie van schema.org](./schema_ext-indischerfgoed.ttl). 
+Het Project Indisch Erfgoed Eigitaal hergebruikt een aantal bestaande schema's zoals [schema.org](http://schema.org), [prov-o](https://www.w3.org/TR/prov-o/) en [SKOS](https://www.w3.org/TR/2009/REC-skos-reference-20090818/). De extra types en relaties die nodig zijn voor het indisch ergoed hebben we gedefinieerd als [extensie van schema.org](./schema_ext-indischerfgoed.ttl). 
+
+De volledige set van types en properties zijn vastgelegd in een [jsonld context file](./jsonldcontext.jsonld). Raadpleeg de [documentatie](https://indischerfgoed.github.io/schema/) voor een leesbare weergave.
 
 Hieronder beschrijven we het model in hoofdlijnen. 
-
-Raadpleeg de [volledige documentatie](https://indischerfgoed.github.io/schema/) voor een overzicht van alle types en alle properties per type.
 
 ## Event
 Centraal in het model staat het Event (paars). 
