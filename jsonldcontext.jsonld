@@ -30,7 +30,7 @@
             "@id": "skos:Concept"
         },
         "DefinedTerm": {
-            "@id": "skos:DefinedTerm"
+            "@id": "schema:DefinedTerm"
         },
         "LifeEvent": {
             "@id": "pied:LifeEvent"
