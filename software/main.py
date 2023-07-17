@@ -32,6 +32,7 @@ def main():
 def generate_index_page(application_profile: ApplicationProfile, slugs: Sluggifier):
     # Write title and description to the index page
     index_page_contents = f'# {config.meta["title"]}\n'
+    index_page_contents += f'{config.meta["subtitle"]}\n\n'
     index_page_contents += f'{config.meta["description"]}\n'
 
     # Loop over all terms per schema and list the terms in those schemas
@@ -70,11 +71,7 @@ def term_to_markdown(term: str, uri: str, slugs: Sluggifier, application_profile
 
     classes = schemas.get_classes(uri)
 
-    # HEADER
-
-    contents = f'[< {config.language["GO_BACK"]}](../)\n'
-    contents += f'# {term}\n\n'
-    contents += f"##### {uri}\n"
+    contents = ''
 
     # BREADCRUMBS
 
@@ -82,6 +79,11 @@ def term_to_markdown(term: str, uri: str, slugs: Sluggifier, application_profile
     for bc in breadcrumbs:
         contents += ' > '.join([get_reference(str(c)) for c in bc]) + '\n'
     contents += '\n'
+
+    # HEADER
+
+    contents += f'# {term}\n\n'
+    contents += f"{uri}\n\n"
 
     # DESCRIPTION
 
@@ -93,14 +95,12 @@ def term_to_markdown(term: str, uri: str, slugs: Sluggifier, application_profile
 
         # PROPERTIES
 
-        contents += f'### {config.language["PROPERTIES"]}\n\n'
+        contents += f'### {config.language["PROPERTIES_FROM"]} {term}\n\n'
 
         # All properties for this class that are also in the application profile
         properties = application_profile.filter(schemas.get_properties_with_class_as_domain(uri))
 
         if len(properties) > 0:
-            contents += f'*{config.language["INSTANCES_OF"]} {term} {config.language["MAY_HAVE_THE_FOLLOWING_PROPERTIES"]}:*\n\n'
-
             contents += f'{config.language["PROPERTY"]} | {config.language["EXPECTED_TYPE"]} | {config.language["DESCRIPTION"]}\n--- | --- | ---\n'
 
             for prop in properties:
@@ -132,7 +132,9 @@ def term_to_markdown(term: str, uri: str, slugs: Sluggifier, application_profile
 
             if len(indirect_properties) > 0:
                 super_class_term = application_profile.id_to_term[super_class] if super_class in application_profile.id_to_term else super_class
-                contents += f'*{config.language["SUBCLASSES_OF"]} {super_class_term} {config.language["MAY_HAVE_THE_FOLLOWING_PROPERTIES"]}:*\n\n'
+
+                contents += f'### {config.language["PROPERTIES_FROM"]} {super_class_term}\n\n'
+
 
                 contents += f'{config.language["PROPERTY"]} | {config.language["EXPECTED_TYPE"]} | {config.language["DESCRIPTION"]}\n--- | --- | ---\n'
 
