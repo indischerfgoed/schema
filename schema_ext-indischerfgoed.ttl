@@ -2,42 +2,198 @@
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix schema: <http://schema.org/> .
 @prefix pied: <https://data.indischherinneringscentrum.nl/schema/> .
+@prefix pied2: <https://data.indischherinneringscentrum.nl/ied/> .
 
 ### This file defines and extension of schema.org for indische erfgoed.
 
-# More specific class of schema:CreativeWork
 
-pied:Monument a rdfs:Class ;
-        rdfs:label "Monument"@nl ;
-        rdfs:subClassOf schema:CreativeWork ;
-        rdfs:comment "Type voor monumenten, zoals herdenkingsmonumenten."@nl .
+#PIED specific classes
+
+
+## More specific classes of schema:CreativeWork
 
 pied:Interview a rdfs:Class ;
         rdfs:label "Interview"@nl ;
         rdfs:subClassOf schema:CreativeWork ;
         rdfs:comment "Type voor interviews, zoals oral history."@nl .
 
+## More specific class of schema:Place
+
+pied:PointofInterest a rdfs:Class ;
+        rdfs:label "Bezienswaardigheid"@nl ;
+        rdfs:subClassOf schema:Place ;
+        rdfs:comment "Type voor bezienswaardheid (Point of Interest), zoals forten, handelsposten, kampen, monumenten, e.d." @nl .
+
+pied:Bronorganisatie a rdfs:Class ;
+        rdfs:label "Bronorganisatie" @nl ;
+        rdfs:subClassof schema:Organization ;
+        rdfs:comment "Type voor aanleverende erfgoed instellingen." @nl .
+
 pied:Story a rdfs:Class ;
         rdfs:label "Verhaal"@nl ;
         rdfs:subClassOf schema:Collection ;
-        rdfs:comment "Type voor een verhaal."@nl .
+        rdfs:comment "Type voor een verhaal in de context van www.onsland.nl."@nl .
 
-pied:LifeEvent a rdfs:Class ;
-        rdfs:label "Persoonlijk event"@nl ;
+
+## More specific classes of pied:Story
+
+pied:StoryComponent a rdfs:Class ;
+        rdfs:label "Verhaal component"@nl ;
+        rdfs:subClassOf pied:Story ;
+        rdfs:comment "Type voor een component van een verhaal in de context van www.onsland.nl."@nl .
+
+
+## More specific classes of schema:Event
+
+pied2:103922 a rdfs:Class ;
+        rdfs:label "lifeEvent"@nl ;
         rdfs:subClassOf schema:Event ;
-        rdfs:comment "Type voor events in het leven van een pesoon."@nl .
-
-pied:TransferEvent a rdfs:Class ;
-        rdfs:label "Transport event"@nl ;
+        rdfs:comment "Type voor events in het leven van een persoon. Als er een specifiekere subclass beschikbaar is wordt die gebruikt."@nl .
+pied2:103907 a rdfs:Class ;
+        rdfs:label "Transport lifeEvent"@nl ;
         rdfs:subClassOf schema:Event ;
-        rdfs:comment "Type voor een transport event over land, zee of door de lucht."@en .
+        rdfs:comment "Type voor een transport event over land, zee of door de lucht. Als er een specifiekere subclass beschikbaar is wordt die gebruikt."@nl .
 
-pied:BirthEvent a rdfs:Class ;
-        rdfs:label "Geboorte"@nl ;
-        rdfs:subClassOf pied:LifeEvent ;
-        rdfs:comment "Type voor het geboorte event in het leven van een pesoon."@nl .
 
-pied:DeathEvent a rdfs:Class ;
+## More specific classes of pied2:103907 --> Transport lifeEvent
+
+pied2:103938 a rdfs:Class ;
+        rdfs:label "Gemigreerd"@nl ;
+        dfs:subClassOf pied2:103922 ;
+        rdfs:comment "Type voor het gemigreerd event in het leven van een persoon."@nl .
+pied2:111173 a rdfs:Class ;
+        rdfs:label "Gereisd"@nl ;
+        dfs:subClassOf pied2:103922 ;
+        rdfs:comment "Type voor het gemigreerd event in het leven van een persoon."@nl .
+
+
+## More specific classes of pied2:103922 --> lifeEvent
+
+pied2:103933 a rdfs:Class ;
+        rdfs:label "Geboren"@nl ;
+        rdfs:subClassOf pied2:103922 ;
+        rdfs:comment "Type voor het geboren event in het leven van een persoon."@nl .
+pied2:103948 a rdfs:Class ;
         rdfs:label "Overlijden"@nl ;
-        rdfs:subClassOf pied:LifeEvent ;
-        rdfs:comment "Type voor het overlijden event in het leven van een pesoon."@nl .
+        rdfs:subClassOf pied2:103922 ;
+        rdfs:comment "Type voor het overlijden event in het leven van een persoon."@nl .
+pied2:103915 a rdfs:Class ;
+        rdfs:label "Gevangen"@nl ;
+        rdfs:subClassOf pied2:103922 ;
+        rdfs:comment "Type voor het Gevangen event in het leven van een persoon."@nl .
+pied2:103919 a rdfs:Class ;
+        rdfs:label "Geïnterneerd"@nl ;
+        rdfs:subClassOf pied2:103922 ;
+        rdfs:comment "Type voor het Geïnterneerd event in het leven van een persoon."@nl .
+pied2:103927 a rdfs:Class ;  Veroordeeld
+        rdfs:label "Veroordeeld"@nl ;
+        rdfs:subClassOf pied2:103922 ;
+        rdfs:comment "Type voor het veroordeeld event in het leven van een persoon."@nl .
+pied2:103928 a rdfs:Class ;
+        rdfs:label "Begraven"@nl ;
+        rdfs:subClassOf pied2:103922 ;
+        rdfs:comment "Type voor het begraven event in het leven van een persoon."@nl .
+pied2:103929 a rdfs:Class ;
+        rdfs:label "Bevrijd"@nl ;
+        rdfs:subClassOf pied2:103922 ;
+        rdfs:comment "Type voor het bevrijd event in het leven van een persoon."@nl .
+pied2:103939 a rdfs:Class ; 
+        rdfs:label "Opgepakt"@nl ;
+        rdfs:subClassOf pied2:103922 ;
+        rdfs:comment "Type voor het opgepakt event in het leven van een persoon."@nl .
+pied2:103940 a rdfs:Class ; 
+        rdfs:label "Gehuwd"@nl ;
+        rdfs:subClassOf pied2:103922 ;
+        rdfs:comment "Type voor het gehuwd event in het leven van een persoon."@nl .
+pied2:103941 a rdfs:Class ; 
+        rdfs:label "Gearresteerd"@nl ;
+        rdfs:subClassOf pied2:103922 ;
+        rdfs:comment "Type voor het gearresteerd event in het leven van een persoon."@nl .
+pied2:103943 a rdfs:Class ; 
+        rdfs:label "Vrijgesproken"@nl ;
+        rdfs:subClassOf pied2:103922 ;
+        rdfs:comment "Type voor het vrijgesproken event in het leven van een persoon."@nl .
+pied2:103944 a rdfs:Class ; 
+        rdfs:label "Vrijgelaten"@nl ;
+        rdfs:subClassOf pied2:103922 ;
+        rdfs:comment "Type voor het vrijgelaten event in het leven van een persoon."@nl .
+pied2:103971 a rdfs:Class ;
+        rdfs:label "Gescheiden"@nl ;
+        rdfs:subClassOf pied2:103922 ;
+        rdfs:comment "Type voor het gescheiden event in het leven van een persoon."@nl .
+pied2:103972 a rdfs:Class ;  
+        rdfs:label "Gelijkgesteld"@nl ;
+        rdfs:subClassOf pied2:103922 ;
+        rdfs:comment "Type voor het gelijkgesteld event in het leven van een persoon."@nl .
+pied2:104229 a rdfs:Class ; 
+        rdfs:label "In dienst"@nl ;
+        rdfs:subClassOf pied2:103922 ;
+        rdfs:comment "Type voor het in dienst event in het leven van een persoon."@nl .
+pied2:110740 a rdfs:Class ; 
+        rdfs:label "Genationaliseerd"@nl ;
+        rdfs:subClassOf pied2:103922 ;
+        rdfs:comment "Type voor het genationaliseerd event in het leven van een persoon."@nl .
+
+
+# PIED specific relations
+pied:thema a rdf:Relation ;
+        rdfs:label "Thema" @nl ;
+        rdfs:comment "Relatie voor het vastleggen van het thema waarbij een concept hoort" @nl .
+
+pied:relatedStory a rdf:Relation ;
+        rdfs:label "Gerelateerd verhaal" @nl ;
+        rdfs:comment "Relatie voor het vastleggen van een gerelateerd verhaal" @nl.
+
+
+
+# PIED specific attributes
+
+
+pied:birthYear a rdf:Property ;
+        rdfs:label "Geboortejaar" @nl ;
+        rdfs:comment "Bij personen gebruikt voor het geboortejaar als de volledige geboortedatum niet bekend is" @nl.
+
+
+pied:deathYear a rdf:Property ;
+        rdfs:label "Overlijdensjaar" @nl ;
+        rdfs:comment "Bij personen gebruikt voor het jaar van overlijden als de volledige overlijdensdatum niet bekend is" @nl.
+
+pied:yearCreated a rdf:Property ;
+        rdfs:label "Creatiejaar" @nl ;
+        rdfs:comment "Bij CreativeWorks gebruikt voor het jaar van creatie als de volledige creatiedatum niet bekend is" @nl .
+
+
+pied:startYear a rdf:Property ;
+        rdfs:label "Startjaar" @nl ;
+        rdfs:comment "Bij gebeurtenissen gebruikt voor het startjaar als de volledige startdatum niet bekend is, bij CreativeWorks te gebruiken om de start van een periode aan te geven waarin het werk gemaakt is." @nl .
+
+pied:endYear a rdf:Property ;
+        rdfs:label "Eindjaar" @nl ;
+        rdfs:comment "Bij gebeurtenissen gebruikt voor het eindjaar als de volledige startdatum niet bekend is, bij CreativeWorks te gebruiken om het eind van een periode aan te geven waarin het werk gemaakt is." @nl .
+
+pied:startYear a rdf:Property ;
+        rdfs:label "Startjaar" @nl ;
+        rdfs:comment "Bij gebeurtenissen gebruikt voor het startjaar als de volledige startdatum niet bekend is, bij CreativeWorks te gebruiken om de start van een periode aan te geven waarin het werk gemaakt is." @nl .
+
+pied:referenceURL a rdf:Property ;
+        rdfs:label "Referentie URL" @nl ;
+        rdfs:comment "Bij entiteiten te gebruiken om een online referentie op te nemen" @nl .
+
+pied:imageURL a rdf:Property ;
+        rdfs:label "Afbeeldings-URL" @nl ;
+        rdfs:comment "Te gebruiken om bij entiteiten een link naar een gerelateerde online afbeelding op te nemen" @nl .
+
+pied:sourceImage a rdf:Property ;
+        rdfs:label "Te gebruiken om bij de bronpagina van de afbeelding uit de afbeeldings-URL op te nemen" @nl .
+
+pied:foundingYear a rdf:Property ;
+        rdfs:label "Oprichtingsjaar" @nl ;
+        rdfs:comment "Bij organisaties gebruiken om het jaar van oprichting vast te leggen, wanneer de volledige datum niet bekend is" @nl .
+
+pied:dissolutionYear a rdf:Property ;
+        rdfs:label "Opheffingsjaar" @nl ;
+        rdfs:comment "Bij organisaties gebruiken om het jaar van opheffing vast te leggen, wanneer de volledige datum niet bekend is" @nl .
+
+
+
+
