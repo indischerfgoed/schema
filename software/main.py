@@ -147,6 +147,7 @@ def term_to_markdown(term: str, uri: str, slugs: Sluggifier, application_profile
                 range_in_profile = application_profile.filter(range)
                 range_out_of_profile = list(filter(lambda iri: str(iri) not in range_in_profile, range))
                 contents += ', '.join(map(lambda r: get_reference(str(r)), range_in_profile))
+                contents += ', ' if len(range_in_profile) > 0 and len(range_out_of_profile) > 0 else ''
                 contents += ', '.join(map(lambda r: get_reference(str(r)), range_out_of_profile))
                 contents += ' | '
 
@@ -186,6 +187,7 @@ def term_to_markdown(term: str, uri: str, slugs: Sluggifier, application_profile
                     range_in_profile = application_profile.filter(range)
                     range_out_of_profile = list(filter(lambda iri: str(iri) not in range_in_profile, range))
                     contents += ', '.join(map(lambda r: get_reference(str(r)), range_in_profile))
+                    contents += ', ' if len(range_in_profile) > 0 and len(range_out_of_profile) > 0 else ''
                     contents += ', '.join(map(lambda r: get_reference(str(r)), range_out_of_profile))
                     contents += ' | '
 
@@ -199,7 +201,7 @@ def term_to_markdown(term: str, uri: str, slugs: Sluggifier, application_profile
 
         # RANGE
 
-        range = application_profile.filter(schemas.get_properties_with_class_as_range(uri, with_subclasses = True))
+        range = application_profile.filter(schemas.get_properties_with_class_as_range(uri, with_subclasses = False))
 
         if len(range) > 0:
 
@@ -211,7 +213,7 @@ def term_to_markdown(term: str, uri: str, slugs: Sluggifier, application_profile
             for property in range:
                 ref = get_reference(str(property))
 
-                domain = application_profile.filter(schemas.get_domain(property, with_subclasses = True))
+                domain = application_profile.filter(schemas.get_domain(property, with_subclasses = False))
                 domain_str = ', '.join(map(lambda d: get_reference(str(d)), domain))
 
                 label = '. '.join(schemas.get_comment(property)) or ''
@@ -238,7 +240,7 @@ def term_to_markdown(term: str, uri: str, slugs: Sluggifier, application_profile
         contents += '\n\n\n'
 
     if RDF.Property in classes:
-        domain = application_profile.filter(schemas.get_domain(uri, with_subclasses = True))
+        domain = application_profile.filter(schemas.get_domain(uri, with_subclasses = False))
 
         if len(domain) > 0:
             contents += f'### {config.language["DOMAIN"]}\n'
