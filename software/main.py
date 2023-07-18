@@ -100,7 +100,7 @@ def term_to_markdown(term: str, uri: str, slugs: Sluggifier, application_profile
         else:
             labels = schemas.get_label(iri)
             name = labels[0] if len(labels) > 0 else iri
-            name += ' &#x2197;'
+            # name += ' &#x2197;'
 
         return f"[{name}]({slugs.transform(iri)})"
 
