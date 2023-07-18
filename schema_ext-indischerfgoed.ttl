@@ -59,11 +59,11 @@ pied2:103907 a rdfs:Class ;
 
 pied2:103938 a rdfs:Class ;
         rdfs:label "Gemigreerd"@nl ;
-        dfs:subClassOf pied2:103922 ;
+        rdfs:subClassOf pied2:103922 ;
         rdfs:comment "Type voor het gemigreerd event in het leven van een persoon."@nl .
 pied2:111173 a rdfs:Class ;
         rdfs:label "Gereisd"@nl ;
-        dfs:subClassOf pied2:103922 ;
+        rdfs:subClassOf pied2:103922 ;
         rdfs:comment "Type voor het gemigreerd event in het leven van een persoon."@nl .
 
 
