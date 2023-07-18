@@ -85,7 +85,7 @@ pied2:103919 a rdfs:Class ;
         rdfs:label "Geïnterneerd"@nl ;
         rdfs:subClassOf pied2:103922 ;
         rdfs:comment "Type voor het Geïnterneerd event in het leven van een persoon."@nl .
-pied2:103927 a rdfs:Class ;  Veroordeeld
+pied2:103927 a rdfs:Class ;
         rdfs:label "Veroordeeld"@nl ;
         rdfs:subClassOf pied2:103922 ;
         rdfs:comment "Type voor het veroordeeld event in het leven van een persoon."@nl .
