@@ -75,11 +75,60 @@
             "@id": "pied:TransportLifeEvent"
         },
        
+//Properties and relations
+        "sameAs": {
+            "@id": "schema:sameAs"
+        },
+        "birthYear": {
+            "@id": "pied:birthYear"
+        },
+        "deathYear": {
+            "@id": "pied:deathYear"
+        },
+        "dissolutionYear": {
+            "@id": "pied:dissolutionYear"
+        },
+        "email": {
+            "@id": "pied:email"
+        },
+        "endYear": {
+            "@id": "pied:endYear"
+        },
+        "foundingYear": {
+            "@id": "pied:foundingYear"
+        },
+        "hashighlightedObjects": {
+            "@id": "pied:hashighlightedObjects"
+        },
+        "imageSource": {
+            "@id": "pied:imageSource"
+        },
+        "imageURL": {
+            "@id": "pied:imageURL"
+        },
+        "referenceURL": {
+            "@id": "pied:referenceURL"
+        },
+        "sourceImage": {
+            "@id": "pied:sourceImage"
+        },
+        "startYear": {
+            "@id": "pied:startYear"
+        },
+        "thema": {
+            "@id": "pied:thema"
+        },
+        "website": {
+            "@id": "pied:website"
+        },
+        "yearCreated": {
+            "@id": "pied:yearCreated"
+        },
+        "wasDerivedFrom": {
+            "@id": "prov:wasDerivedFrom"
+        },
         "type": {
             "@id": "rdf:type"
-        },
-        "additionalType": {
-            "@id": "schema:additionalType"
         },
         "about": {
             "@id": "schema:about"
@@ -87,128 +136,149 @@
         "actor": {
             "@id": "schema:actor"
         },
-        "location": {
-            "@id": "schema:location"
-        },
-        "toLocation": {
-            "@id": "schema:toLocation"
-        },
-        "fromLocation": {
-            "@id": "schema:fromLocation"
-        },
-        "contentLocation": {
-            "@id": "schema:contentLocation"
-        },
-        "keywords": {
-            "@id": "schema:keywords"
-        },
-        "birthPlace": {
-            "@id": "schema:birthPlace"
-        },
-        "deathPlace": {
-            "@id": "schema:deathPlace"
-        },
-        "superEvent": {
-            "@id": "schema:superEvent"
-        },
-        "publisher": {
-            "@id": "schema:publisher"
-        },
-        "wasDerivedFrom": {
-            "@id": "prov:wasDerivedFrom"
-        },
-        "name": {
-            "@id": "schema:name"
+        "additionalType": {
+            "@id": "schema:additionalType"
         },
         "alternateName": {
             "@id": "schema:alternateName"
         },
-        "givenName": {
-            "@id": "schema:givenName"
+        "birthDate": {
+            "@id": "schema:birthDate"
         },
-        "familyName": {
-            "@id": "schema:familyName"
+        "birthPlace": {
+            "@id": "schema:birthPlace"
         },
-        "description": {
-            "@id": "schema:description"
-        },
-        "identifier": {
-            "@id": "schema:identifier"
-        },
-        "url": {
-            "@id": "schema:url"
+        "caption": {
+            "@id": "schema:caption"
         },
         "citation": {
             "@id": "schema:citation"
         },
-        "image": {
-            "@id": "schema:image"
+        "contentLocation": {
+            "@id": "schema:contentLocation"
         },
-        "imageSource": {
-            "@id": "pied:imageSource"
-        },
-        "caption": {
-            "@id": "pied:caption"
-        },
-        "thumbnail": {
-            "@id": "schema:thumbnail"
-        },
-        "jobTitle": {
-            "@id": "schema:jobTitle"
-        },
-        "memberOf": {
-            "@id": "schema:memberOf"
-        },
-        "member": {
-            "@id": "schema:member"
-        },
-        "dateCreated": {
-            "@id": "schema:dateCreated"
-        },
-        "startDate": {
-            "@id": "schema:startDate"
-        },
-        "endDate": {
-            "@id": "schema:endDate"
-        },
-        "temporal": {
-            "@id": "schema:temporal"
-        },
-        "birthDate": {
-            "@id": "schema:birthDate"
-        },
-        "deathDate": {
-            "@id": "schema:deathDate"
-        },
-        "foundingDate": {
-            "@id": "schema:foundingDate"
-        },
-        "dissolutionDate": {
-            "@id": "schema:dissolutionDate"
-        },
-        "gender": {
-            "@id": "schema:gender"
-        },
-        "position": {
-            "@id": "schema:position"
-        },
-        "license": {
-            "@id": "schema:license"
-        },
-        "material": {
-            "@id": "schema:material"
+        "contributor": {
+            "@id": "schema:contributor"
         },
         "creator": {
             "@id": "schema:creator"
         },
-        "contributor": {
-            "@id": "schema:creator"
+        "date": {
+            "@id": "schema:date"
+        },
+        "dateCreated": {
+            "@id": "schema:dateCreated"
+        },
+        "deathDate": {
+            "@id": "schema:deathDate"
+        },
+        "deathPlace": {
+            "@id": "schema:deathPlace"
+        },
+        "description": {
+            "@id": "schema:description"
+        },
+        "dissolutionDate": {
+            "@id": "schema:dissolutionDate"
+        },
+        "endDate": {
+            "@id": "schema:endDate"
+        },
+        "familyName": {
+            "@id": "schema:familyName"
+        },
+        "foundingDate": {
+            "@id": "schema:foundingDate"
+        },
+        "fromLocation": {
+            "@id": "schema:fromLocation"
+        },
+        "gender": {
+            "@id": "schema:gender"
+        },
+        "givenName": {
+            "@id": "schema:givenName"
+        },
+        "identifier": {
+            "@id": "schema:identifier"
+        },
+        "image": {
+            "@id": "schema:image"
+        },
+        "imageCaption": {
+            "@id": "schema:imageCaption"
         },
         "isPartOf": {
             "@id": "schema:isPartOf"
         },
-        "hasPart": {
-            "@id": "schema:hasPart"
+        "jobTitle": {
+            "@id": "schema:jobTitle"
+        },
+        "keywords": {
+            "@id": "schema:keywords"
+        },
+        "latitude": {
+            "@id": "schema:latitude"
+        },
+        "license": {
+            "@id": "schema:license"
+        },
+        "location": {
+            "@id": "schema:location"
+        },
+        "longitude": {
+            "@id": "schema:longitude"
+        },
+        "mainEntityOfPage": {
+            "@id": "schema:mainEntityOfPage"
+        },
+        "material": {
+            "@id": "schema:material"
+        },
+        "member": {
+            "@id": "schema:member"
+        },
+        "memberOf": {
+            "@id": "schema:memberOf"
+        },
+        "name": {
+            "@id": "schema:name"
+        },
+        "parent": {
+            "@id": "schema:parent"
+        },
+        "position": {
+            "@id": "schema:position"
+        },
+        "provider": {
+            "@id": "schema:provider"
+        },
+        "publisher": {
+            "@id": "schema:publisher"
+        },
+        "spouse": {
+            "@id": "schema:spouse"
+        },
+        "startDate": {
+            "@id": "schema:startDate"
+        },
+        "superEvent": {
+            "@id": "schema:superEvent"
+        },
+        "temporal": {
+            "@id": "schema:temporal"
+        },
+        "thumbnail": {
+            "@id": "schema:thumbnail"
+        },
+        "toLocation": {
+            "@id": "schema:toLocation"
+        },
+        "url": {
+            "@id": "schema:url"
+        },
+        "wasDerivedFrom": {
+            "@id": "schema:wasDerivedFrom"
         }
     }
 }
