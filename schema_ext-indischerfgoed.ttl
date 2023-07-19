@@ -2,7 +2,6 @@
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix schema: <http://schema.org/> .
 @prefix pied: <https://data.indischherinneringscentrum.nl/schema/> .
-@prefix pied2: <https://data.indischherinneringscentrum.nl/ied/> .
 
 ### This file defines and extension of schema.org for indische erfgoed.
 
@@ -45,12 +44,12 @@ pied:StoryComponent a rdfs:Class ;
 
 ## More specific classes of schema:Event
 
-pied2:103922 a rdfs:Class ;
+pied:LifeEvent a rdfs:Class ;
         rdfs:label "lifeEvent"@nl ;
         rdfs:subClassOf schema:Event ;
         rdfs:comment "Type voor events in het leven van een persoon. Als er een specifiekere subclass beschikbaar is wordt die gebruikt."@nl .
-pied2:103907 a rdfs:Class ;
-        rdfs:label "Transport lifeEvent"@nl ;
+pied:TransportLifeEvent a rdfs:Class ;
+        rdfs:label "TransportLifeEvent"@nl ;
         rdfs:subClassOf schema:Event ;
         rdfs:comment "Type voor een transport event over land, zee of door de lucht. Als er een specifiekere subclass beschikbaar is wordt die gebruikt."@nl .
 
@@ -65,74 +64,6 @@ pied2:111173 a rdfs:Class ;
         rdfs:label "Gereisd"@nl ;
         rdfs:subClassOf pied2:103922 ;
         rdfs:comment "Type voor het gemigreerd event in het leven van een persoon."@nl .
-
-
-## More specific classes of pied2:103922 --> lifeEvent
-
-pied2:103933 a rdfs:Class ;
-        rdfs:label "Geboren"@nl ;
-        rdfs:subClassOf pied2:103922 ;
-        rdfs:comment "Type voor het geboren event in het leven van een persoon."@nl .
-pied2:103948 a rdfs:Class ;
-        rdfs:label "Overlijden"@nl ;
-        rdfs:subClassOf pied2:103922 ;
-        rdfs:comment "Type voor het overlijden event in het leven van een persoon."@nl .
-pied2:103915 a rdfs:Class ;
-        rdfs:label "Gevangen"@nl ;
-        rdfs:subClassOf pied2:103922 ;
-        rdfs:comment "Type voor het Gevangen event in het leven van een persoon."@nl .
-pied2:103919 a rdfs:Class ;
-        rdfs:label "Geïnterneerd"@nl ;
-        rdfs:subClassOf pied2:103922 ;
-        rdfs:comment "Type voor het Geïnterneerd event in het leven van een persoon."@nl .
-pied2:103927 a rdfs:Class ;
-        rdfs:label "Veroordeeld"@nl ;
-        rdfs:subClassOf pied2:103922 ;
-        rdfs:comment "Type voor het veroordeeld event in het leven van een persoon."@nl .
-pied2:103928 a rdfs:Class ;
-        rdfs:label "Begraven"@nl ;
-        rdfs:subClassOf pied2:103922 ;
-        rdfs:comment "Type voor het begraven event in het leven van een persoon."@nl .
-pied2:103929 a rdfs:Class ;
-        rdfs:label "Bevrijd"@nl ;
-        rdfs:subClassOf pied2:103922 ;
-        rdfs:comment "Type voor het bevrijd event in het leven van een persoon."@nl .
-pied2:103939 a rdfs:Class ; 
-        rdfs:label "Opgepakt"@nl ;
-        rdfs:subClassOf pied2:103922 ;
-        rdfs:comment "Type voor het opgepakt event in het leven van een persoon."@nl .
-pied2:103940 a rdfs:Class ; 
-        rdfs:label "Gehuwd"@nl ;
-        rdfs:subClassOf pied2:103922 ;
-        rdfs:comment "Type voor het gehuwd event in het leven van een persoon."@nl .
-pied2:103941 a rdfs:Class ; 
-        rdfs:label "Gearresteerd"@nl ;
-        rdfs:subClassOf pied2:103922 ;
-        rdfs:comment "Type voor het gearresteerd event in het leven van een persoon."@nl .
-pied2:103943 a rdfs:Class ; 
-        rdfs:label "Vrijgesproken"@nl ;
-        rdfs:subClassOf pied2:103922 ;
-        rdfs:comment "Type voor het vrijgesproken event in het leven van een persoon."@nl .
-pied2:103944 a rdfs:Class ; 
-        rdfs:label "Vrijgelaten"@nl ;
-        rdfs:subClassOf pied2:103922 ;
-        rdfs:comment "Type voor het vrijgelaten event in het leven van een persoon."@nl .
-pied2:103971 a rdfs:Class ;
-        rdfs:label "Gescheiden"@nl ;
-        rdfs:subClassOf pied2:103922 ;
-        rdfs:comment "Type voor het gescheiden event in het leven van een persoon."@nl .
-pied2:103972 a rdfs:Class ;  
-        rdfs:label "Gelijkgesteld"@nl ;
-        rdfs:subClassOf pied2:103922 ;
-        rdfs:comment "Type voor het gelijkgesteld event in het leven van een persoon."@nl .
-pied2:104229 a rdfs:Class ; 
-        rdfs:label "In dienst"@nl ;
-        rdfs:subClassOf pied2:103922 ;
-        rdfs:comment "Type voor het in dienst event in het leven van een persoon."@nl .
-pied2:110740 a rdfs:Class ; 
-        rdfs:label "Genationaliseerd"@nl ;
-        rdfs:subClassOf pied2:103922 ;
-        rdfs:comment "Type voor het genationaliseerd event in het leven van een persoon."@nl .
 
 
 # PIED specific relations
