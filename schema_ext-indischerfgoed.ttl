@@ -53,19 +53,6 @@ pied:TransportLifeEvent a rdfs:Class ;
         rdfs:subClassOf schema:Event ;
         rdfs:comment "Type voor een transport event over land, zee of door de lucht. Als er een specifiekere subclass beschikbaar is wordt die gebruikt."@nl .
 
-
-## More specific classes of pied2:103907 --> Transport lifeEvent
-
-pied2:103938 a rdfs:Class ;
-        rdfs:label "Gemigreerd"@nl ;
-        rdfs:subClassOf pied2:103922 ;
-        rdfs:comment "Type voor het gemigreerd event in het leven van een persoon."@nl .
-pied2:111173 a rdfs:Class ;
-        rdfs:label "Gereisd"@nl ;
-        rdfs:subClassOf pied2:103922 ;
-        rdfs:comment "Type voor het gemigreerd event in het leven van een persoon."@nl .
-
-
 # PIED specific relations
 pied:thema a rdf:Relation ;
         rdfs:label "Thema"@nl ;
