@@ -12,7 +12,7 @@
 
 ## More specific classes of schema:CreativeWork
 
-pied:Interview rdfs:Class ;
+pied:Interview a rdfs:Class ;
         rdfs:label "Interview"@nl ;
         rdfs:subClassOf schema:CreativeWork ;
         rdfs:comment "Type voor interviews, zoals oral history."@nl .
