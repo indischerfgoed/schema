@@ -14,59 +14,20 @@
         "Place": {
             "@id": "schema:Place"
         },
+        "PointOfInterest": {
+            "@id": "pied:PointOfInterest"
+        },
         "Organization": {
             "@id": "schema:Organization"
         },
-        "CreativeWork": {
-            "@id": "schema:CreativeWork"
-        },
-        "Story": {
-            "@id": "pied:Story"
-        },
-        "Concept": {
-            "@id": "skos:Concept"
+        "Bronorganisatie": {
+            "@id": "pied:Bronorganisatie"
         },
         "DefinedTerm": {
             "@id": "schema:DefinedTerm"
         },
-        "LifeEvent": {
-            "@id": "pied:LifeEvent"
-        },
-        "TransferEvent": {
-            "@id": "pied:TransferEvent"
-        },
-        "BirthEvent": {
-            "@id": "pied:BirthEvent"
-        },
-        "DeathEvent": {
-            "@id": "pied:DeathEvent"
-        },
-        "MediaObject": {
-            "@id": "schema:MediaObject"
-        },
-        "ImageObject": {
-            "@id": "schema:ImageObject"
-        },
-        "VideoObject": {
-            "@id": "schema:VideoObject"
-        },
-        "AudioObject": {
-            "@id": "schema:AudioObject"
-        },
-        "Photograph": {
-            "@id": "schema:Photograph"
-        },
-        "Book": {
-            "@id": "schema:Book"
-        },
-        "ArchiveComponent": {
-            "@id": "schema:ArchiveComponent"
-        },
-        "Interview": {
-            "@id": "pied:Interview"
-        },
-        "Monument": {
-            "@id": "pied:Monument"
+        "CreativeWork": {
+            "@id": "schema:CreativeWork"
         },
         "VisualArtwork": {
             "@id": "schema:VisualArtwork"
@@ -77,12 +38,43 @@
         "Drawing": {
             "@id": "schema:Drawing"
         },
+        "Photograph": {
+            "@id": "schema:Photograph"
+        },
+        "MediaObject": {
+            "@id": "schema:MediaObject"
+        },
+        "VideoObject": {
+            "@id": "schema:VideoObject"
+        },
+        "AudioObject": {
+            "@id": "schema:AudioObject"
+        },
+        "ImageObject": {
+            "@id": "schema:ImageObject"
+        },
+        "ArchiveComponent": {
+            "@id": "schema:ArchiveComponent"
+        },
+        "Story": {
+            "@id": "pied:Story"
+        },
+        "StoryComponent": {
+            "@id": "pied:StoryComponent"
+        },
         "Dataset": {
             "@id": "schema:Dataset"
         },
         "Entity": {
             "@id": "prov:Entity"
         },
+        "LifeEvent": {
+            "@id": "pied:LifeEvent"
+        },
+        "TransportLifeEvent": {
+            "@id": "pied:TransportLifeEvent"
+        },
+       
         "type": {
             "@id": "rdf:type"
         },
