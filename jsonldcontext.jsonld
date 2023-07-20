@@ -101,9 +101,6 @@
         "imageSource": {
             "@id": "pied:imageSource"
         },
-        "imageURL": {
-            "@id": "pied:imageURL"
-        },
         "referenceURL": {
             "@id": "pied:referenceURL"
         },
