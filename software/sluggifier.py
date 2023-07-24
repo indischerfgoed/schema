@@ -1,4 +1,3 @@
-from slugify import slugify
 from application_profile import ApplicationProfile
 
 """
@@ -14,26 +13,8 @@ class Sluggifier:
         self.slugs = dict()
         self.application_profile = application_profile
 
-        # for term in application_profile.mappings.values():
-        #     slug = self._find_slug(term['@id'], self.slugs.values())
-        #     self.slugs[term['@id']] = slug
-
-
     def transform(self, iri: str) -> str:
-        # if iri in self.slugs:
-        #     return f'{self.slugs[iri]}.html'
-        # else:
-        #     return iri
-
         if iri in self.application_profile.id_to_term:
             return f'{self.application_profile.id_to_term[iri]}.html'
         else:
             return iri
-
-    # def _find_slug(self, not_a_slug: str, existing_slugs: list[str]) -> str:
-    #     slug = slugify(not_a_slug)
-    #     i = 0
-    #     while slug in existing_slugs:
-    #         i += 1
-    #         slug = slugify(not_a_slug) + '-' + str(i)
-    #     return slug

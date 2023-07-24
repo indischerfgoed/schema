@@ -88,7 +88,7 @@ def generate_term_pages(application_profile: ApplicationProfile, schemas: Schema
             full = application_profile.mappings[term]['@id']
             term_contents = term_to_markdown(
                 term, full, slugs, application_profile, schemas)
-            markdown_to_file(term_contents, slugs.transform(full))
+            markdown_to_file(term_contents, slugs.transform(full) + '.html')
 
 """ Generates a Markdown page for a given term """
 def term_to_markdown(term: str, uri: str, slugs: Sluggifier, application_profile: ApplicationProfile, schemas: Schemas):
