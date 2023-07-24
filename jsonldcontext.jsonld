@@ -86,17 +86,11 @@
         "dissolutionYear": {
             "@id": "pied:dissolutionYear"
         },
-        "email": {
-            "@id": "pied:email"
-        },
         "endYear": {
             "@id": "pied:endYear"
         },
         "foundingYear": {
             "@id": "pied:foundingYear"
-        },
-        "hashighlightedObjects": {
-            "@id": "pied:hashighlightedObjects"
         },
         "imageSource": {
             "@id": "pied:imageSource"
@@ -112,9 +106,6 @@
         },
         "thema": {
             "@id": "pied:thema"
-        },
-        "website": {
-            "@id": "pied:website"
         },
         "yearCreated": {
             "@id": "pied:yearCreated"
