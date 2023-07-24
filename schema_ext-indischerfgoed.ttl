@@ -57,13 +57,13 @@ pied:TransportLifeEvent a rdfs:Class ;
 # PIED specific relations
 pied:thema a rdf:Relation ;
         rdfs:label "Thema"@nl ;
-        rdfs:comment "Relatie voor het vastleggen van het thema waarbij een concept hoort"@nl .
+        rdfs:comment "Relatie voor het vastleggen van het thema waarbij een concept hoort"@nl ;
         schema:domainIncludes schema:Event ;
         schema:rangeIncludes schema:URL .
 
 pied:relatedStory a rdf:Relation ;
         rdfs:label "Gerelateerd verhaal"@nl ;
-        rdfs:comment "Relatie voor het vastleggen van een gerelateerd verhaal"@nl.
+        rdfs:comment "Relatie voor het vastleggen van een gerelateerd verhaal"@nl ;
         schema:domainIncludes pied:Story ;
         schema:rangeIncludes pied:Story .
 
@@ -73,39 +73,39 @@ pied:relatedStory a rdf:Relation ;
 
 pied:birthYear a rdf:Property ;
         rdfs:label "Geboortejaar"@nl ;
-        rdfs:comment "Bij personen gebruikt voor het geboortejaar als de volledige geboortedatum niet bekend is"@nl.
+        rdfs:comment "Bij personen gebruikt voor het geboortejaar als de volledige geboortedatum niet bekend is"@nl ;
         schema:domainIncludes schema:Person ;
         schema:rangeIncludes schema:Integer .
 
 pied:deathYear a rdf:Property ;
         rdfs:label "Overlijdensjaar"@nl ;
-        rdfs:comment "Bij personen gebruikt voor het jaar van overlijden als de volledige overlijdensdatum niet bekend is"@nl.
+        rdfs:comment "Bij personen gebruikt voor het jaar van overlijden als de volledige overlijdensdatum niet bekend is"@nl ;
         schema:domainIncludes schema:Person ;
         schema:rangeIncludes schema:Integer .
 
 pied:yearCreated a rdf:Property ;
         rdfs:label "Creatiejaar"@nl ;
-        rdfs:comment "Bij CreativeWorks gebruikt voor het jaar van creatie als de volledige creatiedatum niet bekend is"@nl .
+        rdfs:comment "Bij CreativeWorks gebruikt voor het jaar van creatie als de volledige creatiedatum niet bekend is"@nl ;
         schema:domainIncludes schema:CreativeWork ;
         schema:rangeIncludes schema:Integer .
 
 pied:startYear a rdf:Property ;
         rdfs:label "Startjaar"@nl ;
-        rdfs:comment "Bij gebeurtenissen gebruikt voor het startjaar als de volledige startdatum niet bekend is, bij CreativeWorks te gebruiken om de start van een periode aan te geven waarin het werk gemaakt is."@nl .
+        rdfs:comment "Bij gebeurtenissen gebruikt voor het startjaar als de volledige startdatum niet bekend is, bij CreativeWorks te gebruiken om de start van een periode aan te geven waarin het werk gemaakt is."@nl ;
         schema:domainIncludes schema:Event,
                 schema:CreativeWork;
         schema:rangeIncludes schema:Integer .
 
 pied:endYear a rdf:Property ;
         rdfs:label "Eindjaar"@nl ;
-        rdfs:comment "Bij gebeurtenissen gebruikt voor het eindjaar als de volledige startdatum niet bekend is, bij CreativeWorks te gebruiken om het eind van een periode aan te geven waarin het werk gemaakt is."@nl .
+        rdfs:comment "Bij gebeurtenissen gebruikt voor het eindjaar als de volledige startdatum niet bekend is, bij CreativeWorks te gebruiken om het eind van een periode aan te geven waarin het werk gemaakt is."@nl ;
         schema:domainIncludes schema:Event,
                 schema:CreativeWork;
         schema:rangeIncludes schema:Integer .
 
 pied:referenceURL a rdf:Property ;
         rdfs:label "Referentie URL"@nl ;
-        rdfs:comment "Bij entiteiten te gebruiken om een online referentie op te nemen"@nl .
+        rdfs:comment "Bij entiteiten te gebruiken om een online referentie op te nemen"@nl ;
         schema:domainIncludes schema:Event,
                 schema:Person,
                 schema:Organization,
@@ -116,7 +116,7 @@ pied:referenceURL a rdf:Property ;
 
 pied:imageURL a rdf:Property ;
         rdfs:label "Afbeeldings-URL"@nl ;
-        rdfs:comment "Te gebruiken om bij entiteiten een link naar een gerelateerde online afbeelding op te nemen"@nl .
+        rdfs:comment "Te gebruiken om bij entiteiten een link naar een gerelateerde online afbeelding op te nemen"@nl ;
         schema:domainIncludes schema:Event,
                 schema:Person,
                 schema:Organization,
@@ -127,7 +127,7 @@ pied:imageURL a rdf:Property ;
 
 pied:sourceImage a rdf:Property ;
         rdfs:label "Afbeeldingsbron"@nl ;
-        rdfs:comment "Te gebruiken om bij de bronpagina van de afbeelding uit de afbeeldings-URL op te nemen"@nl .
+        rdfs:comment "Te gebruiken om bij de bronpagina van de afbeelding uit de afbeeldings-URL op te nemen"@nl ;
         schema:domainIncludes schema:Event,
                 schema:Person,
                 schema:Organization,
@@ -138,13 +138,13 @@ pied:sourceImage a rdf:Property ;
 
 pied:foundingYear a rdf:Property ;
         rdfs:label "Oprichtingsjaar"@nl ;
-        rdfs:comment "Bij organisaties gebruiken om het jaar van oprichting vast te leggen, wanneer de volledige datum niet bekend is"@nl .
+        rdfs:comment "Bij organisaties gebruiken om het jaar van oprichting vast te leggen, wanneer de volledige datum niet bekend is"@nl ;
         schema:domainIncludes schema:Organization ;
         schema:rangeIncludes schema:Integer .
 
 pied:dissolutionYear a rdf:Property ;
         rdfs:label "Opheffingsjaar"@nl ;
-        rdfs:comment "Bij organisaties gebruiken om het jaar van opheffing vast te leggen, wanneer de volledige datum niet bekend is"@nl .
+        rdfs:comment "Bij organisaties gebruiken om het jaar van opheffing vast te leggen, wanneer de volledige datum niet bekend is"@nl ;
         schema:domainIncludes schema:Organization ;
         schema:rangeIncludes schema:Integer .
 
