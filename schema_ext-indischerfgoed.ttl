@@ -111,7 +111,7 @@ pied:referenceURL a rdf:Property ;
                 schema:Organization,
                 schema:Place,
                 pied:DefinedTerm,
-                pied:PointOfInterest
+                pied:PointOfInterest ;
         schema:rangeIncludes schema:URL .
 
 pied:imageURL a rdf:Property ;
@@ -122,7 +122,7 @@ pied:imageURL a rdf:Property ;
                 schema:Organization,
                 schema:Place,
                 pied:DefinedTerm,
-                pied:PointOfInterest
+                pied:PointOfInterest ;
         schema:rangeIncludes schema:URL .
 
 pied:sourceImage a rdf:Property ;
@@ -133,7 +133,7 @@ pied:sourceImage a rdf:Property ;
                 schema:Organization,
                 schema:Place,
                 pied:DefinedTerm,
-                pied:PointOfInterest
+                pied:PointOfInterest ;
         schema:rangeIncludes schema:URL .
 
 pied:foundingYear a rdf:Property ;
