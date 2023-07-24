@@ -80,7 +80,6 @@ pied:yearCreated a rdf:Property ;
         rdfs:label "Creatiejaar"@nl ;
         rdfs:comment "Bij CreativeWorks gebruikt voor het jaar van creatie als de volledige creatiedatum niet bekend is"@nl .
 
-
 pied:startYear a rdf:Property ;
         rdfs:label "Startjaar"@nl ;
         rdfs:comment "Bij gebeurtenissen gebruikt voor het startjaar als de volledige startdatum niet bekend is, bij CreativeWorks te gebruiken om de start van een periode aan te geven waarin het werk gemaakt is."@nl .
@@ -88,10 +87,6 @@ pied:startYear a rdf:Property ;
 pied:endYear a rdf:Property ;
         rdfs:label "Eindjaar"@nl ;
         rdfs:comment "Bij gebeurtenissen gebruikt voor het eindjaar als de volledige startdatum niet bekend is, bij CreativeWorks te gebruiken om het eind van een periode aan te geven waarin het werk gemaakt is."@nl .
-
-pied:startYear a rdf:Property ;
-        rdfs:label "Startjaar"@nl ;
-        rdfs:comment "Bij gebeurtenissen gebruikt voor het startjaar als de volledige startdatum niet bekend is, bij CreativeWorks te gebruiken om de start van een periode aan te geven waarin het werk gemaakt is."@nl .
 
 pied:referenceURL a rdf:Property ;
         rdfs:label "Referentie URL"@nl ;
