@@ -15,6 +15,6 @@ class Sluggifier:
 
     def transform(self, iri: str) -> str:
         if iri in self.application_profile.id_to_term:
-            return f'{self.application_profile.id_to_term[iri]}.html'
+            return f'{self.application_profile.id_to_term[iri]}'
         else:
             return iri
