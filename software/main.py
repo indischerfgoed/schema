@@ -240,7 +240,7 @@ def term_to_markdown(term: str, uri: str, slugs: Sluggifier, application_profile
         contents += '\n\n\n'
 
     if RDF.Property in classes:
-        domain = application_profile.filter(schemas.get_domain(uri, with_subclasses = False))
+        domain = schemas.get_domain(uri, with_subclasses = False)
 
         if len(domain) > 0:
             contents += f'### {config.language["DOMAIN"]}\n'
@@ -250,7 +250,7 @@ def term_to_markdown(term: str, uri: str, slugs: Sluggifier, application_profile
                     get_reference(str(item)) + '\n'
             contents += '\n\n\n'
         
-        range = application_profile.filter(schemas.get_range(uri))
+        range = schemas.get_range(uri)
 
         if len(range) > 0:
             contents += f'### {config.language["RANGE"]}\n'
