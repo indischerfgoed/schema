@@ -26,7 +26,7 @@ class Sluggifier:
         #     return iri
 
         if iri in self.application_profile.id_to_term:
-            return f'{self.application_profile.id_to_term[iri]}'
+            return f'{self.application_profile.id_to_term[iri]}.html'
         else:
             return iri
 
