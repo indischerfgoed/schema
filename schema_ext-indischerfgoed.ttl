@@ -139,13 +139,15 @@ pied:sourceImage a rdf:Property ;
 pied:foundingYear a rdf:Property ;
         rdfs:label "Oprichtingsjaar"@nl ;
         rdfs:comment "Bij organisaties gebruiken om het jaar van oprichting vast te leggen, wanneer de volledige datum niet bekend is"@nl ;
-        schema:domainIncludes schema:Organization ;
+        schema:domainIncludes schema:Organization,
+                schema:PointofInterest ;
         schema:rangeIncludes schema:Integer .
 
 pied:dissolutionYear a rdf:Property ;
         rdfs:label "Opheffingsjaar"@nl ;
         rdfs:comment "Bij organisaties gebruiken om het jaar van opheffing vast te leggen, wanneer de volledige datum niet bekend is"@nl ;
-        schema:domainIncludes schema:Organization ;
+        schema:domainIncludes schema:Organization,
+                schema:PointofInterest ;
         schema:rangeIncludes schema:Integer .
 
 
