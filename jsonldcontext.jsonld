@@ -262,9 +262,6 @@
         },
         "url": {
             "@id": "schema:url"
-        },
-        "wasDerivedFrom": {
-            "@id": "schema:wasDerivedFrom"
         }
     }
 }
