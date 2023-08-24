@@ -149,9 +149,6 @@
         "creator": {
             "@id": "schema:creator"
         },
-        "date": {
-            "@id": "schema:date"
-        },
         "dateCreated": {
             "@id": "schema:dateCreated"
         },
