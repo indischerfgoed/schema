@@ -260,5 +260,9 @@
         "url": {
             "@id": "schema:url"
         }
+        },
+        "contentUrl": {
+            "@id": "schema:contentUrl"
+        }
     }
 }
