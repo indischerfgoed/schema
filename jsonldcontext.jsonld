@@ -74,6 +74,9 @@
         "TransportLifeEvent": {
             "@id": "pied:TransportLifeEvent"
         },
+        "TransferEvent": {
+            "@id": "pied:TransferEvent"
+        },
         "sameAs": {
             "@id": "schema:sameAs"
         },
