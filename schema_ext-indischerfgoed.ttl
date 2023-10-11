@@ -52,7 +52,13 @@ pied:LifeEvent a rdfs:Class ;
 pied:TransportLifeEvent a rdfs:Class ;
         rdfs:label "TransportLifeEvent"@nl ;
         rdfs:subClassOf schema:Event ;
-        rdfs:comment "Type voor een transport event over land, zee of door de lucht. Als er een specifiekere subclass beschikbaar is wordt die gebruikt."@nl .
+        rdfs:comment "Type voor een transport event over land, zee of door de lucht die specifiek is voor één persoon (het is een soort lifeEvent). Als er een specifiekere subclass beschikbaar is wordt die gebruikt."@nl .
+
+pied:TransferEvent a rdfs:Class ;
+        rdfs:label "TransferEvent"@nl ;
+        rdfs:subClassOf schema:Event ;
+        rdfs:comment "Type voor een transport event over land, zee of door de lucht als deze an sich beschreven wordt."@nl .
+
 
 # PIED specific relations
 pied:thema a rdf:Relation ;
