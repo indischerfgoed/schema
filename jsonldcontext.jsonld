@@ -41,6 +41,9 @@
         "Photograph": {
             "@id": "schema:Photograph"
         },
+          "ObjectPhotograph": {
+            "@id": "schema:ObjectPhotograph"
+        },
         "MediaObject": {
             "@id": "schema:MediaObject"
         },
