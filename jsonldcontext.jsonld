@@ -42,7 +42,7 @@
             "@id": "schema:Photograph"
         },
           "ObjectPhotograph": {
-            "@id": "schema:ObjectPhotograph"
+            "@id": "pied:ObjectPhotograph"
         },
         "MediaObject": {
             "@id": "schema:MediaObject"
