@@ -65,22 +65,19 @@ pied:TransferEvent a rdfs:Class ;
         rdfs:comment "Type voor een transport event over land, zee of door de lucht als deze an sich beschreven wordt."@nl .
 
 
-# PIED specific relations
-pied:thema a rdf:Relation ;
+# PIED specific properties
+
+pied:thema a rdf:Property ;
         rdfs:label "Thema"@nl ;
         rdfs:comment "Relatie voor het vastleggen van het thema waarbij een concept hoort"@nl ;
         schema:domainIncludes schema:Event, pied:Story ;
         schema:rangeIncludes schema:URL .
 
-pied:relatedStory a rdf:Relation ;
+pied:relatedStory a rdf:Property ;
         rdfs:label "Gerelateerd verhaal"@nl ;
         rdfs:comment "Relatie voor het vastleggen van een gerelateerd verhaal"@nl ;
         schema:domainIncludes pied:Story ;
         schema:rangeIncludes pied:Story .
-
-
-# PIED specific attributes
-
 
 pied:birthYear a rdf:Property ;
         rdfs:label "Geboortejaar"@nl ;
