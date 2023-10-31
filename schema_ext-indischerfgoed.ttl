@@ -69,7 +69,7 @@ pied:TransferEvent a rdfs:Class ;
 pied:thema a rdf:Relation ;
         rdfs:label "Thema"@nl ;
         rdfs:comment "Relatie voor het vastleggen van het thema waarbij een concept hoort"@nl ;
-        schema:domainIncludes schema:Event ;
+        schema:domainIncludes schema:Event, pied:Story ;
         schema:rangeIncludes schema:URL .
 
 pied:relatedStory a rdf:Relation ;
