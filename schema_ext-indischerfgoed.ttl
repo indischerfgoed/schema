@@ -5,6 +5,22 @@
 
 ### This file defines and extension of schema.org for indische erfgoed.
 
+# Dutch labels for all result types
+
+schema:Photograph
+        rdfs:label "Foto's"@nl .
+schema:VideoObject
+        rdfs:label "Video's"@nl .
+schema:Drawing
+        rdfs:label "Tekeningen"@nl .
+schema:Painting
+        rdfs:label "Schilderijen"@nl .
+schema:ArchiveComponent
+        rdfs:label "Archieven"@nl .
+schema:Photograph
+        rdfs:label "Personen"@nl .
+schema:NewsArticle
+        rdfs:label "Krantenartikelen"@nl .
 
 #PIED specific classes
 
