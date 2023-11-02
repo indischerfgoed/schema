@@ -65,6 +65,9 @@
         "StoryComponent": {
             "@id": "pied:StoryComponent"
         },
+        "NewsArticle": {
+            "@id": "schema:NewsArticle"
+        },
         "Dataset": {
             "@id": "schema:Dataset"
         },
