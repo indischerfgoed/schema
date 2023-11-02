@@ -19,7 +19,7 @@ pied:ObjectPhotograph a rdfs:Class ;
         rdfs:subClassOf schema:CreativeWork ;
         rdfs:comment "Type voor foto's van (museale) objecten."@nl .
 
-pied:PersonArchiveComponent a rdfs:Class ;
+pied:PersonArchiveCard a rdfs:Class ;
         rdfs:label "Persoonlijk archief"@nl ;
         rdfs:subClassOf schema:CreativeWork ;
         rdfs:comment "Type voor archiefkaarten die betrekking hebben op één of meerdere personen."@nl .
