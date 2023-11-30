@@ -1,5 +1,6 @@
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
 @prefix schema: <http://schema.org/> .
 @prefix pied: <https://data.indischherinneringscentrum.nl/schema/> .
 
@@ -116,13 +117,26 @@ pied:endYear a rdf:Property ;
 
 pied:referenceURL a rdf:Property ;
         rdfs:label "Referentie URL"@nl ;
-        rdfs:comment "Bij entiteiten te gebruiken om een online referentie op te nemen"@nl ;
+        rdfs:comment "Bij entiteiten te gebruiken om een link naar online referentie op te nemen"@nl ;
         schema:domainIncludes schema:Event,
                 schema:Person,
                 schema:Organization,
                 schema:Place,
                 pied:DefinedTerm,
-                pied:PointOfInterest ;
+                pied:PointOfInterest
+                prov:Entity ;
+        schema:rangeIncludes schema:URL .
+
+pied:reference a rdf:Property ;
+        rdfs:label "Referentie"@nl ;
+        rdfs:comment "Bij entiteiten te gebruiken om de naam van een online referentie op te nemen"@nl ;
+        schema:domainIncludes schema:Event,
+                schema:Person,
+                schema:Organization,
+                schema:Place,
+                pied:DefinedTerm,
+                pied:PointOfInterest
+                prov:Entity ;
         schema:rangeIncludes schema:URL .
 
 pied:imageURL a rdf:Property ;
