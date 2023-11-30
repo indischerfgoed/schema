@@ -124,7 +124,7 @@ pied:referenceURL a rdf:Property ;
                 schema:Place,
                 pied:DefinedTerm,
                 pied:PointOfInterest,
-                prov:Entity ;
+                pied:LifeEvent ;
         schema:rangeIncludes schema:URL .
 
 pied:reference a rdf:Property ;
@@ -136,7 +136,7 @@ pied:reference a rdf:Property ;
                 schema:Place,
                 pied:DefinedTerm,
                 pied:PointOfInterest,
-                prov:Entity ;
+                prov:LifeEvent ;
         schema:rangeIncludes schema:URL .
 
 pied:imageURL a rdf:Property ;
