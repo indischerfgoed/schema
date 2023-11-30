@@ -123,7 +123,7 @@ pied:referenceURL a rdf:Property ;
                 schema:Organization,
                 schema:Place,
                 pied:DefinedTerm,
-                pied:PointOfInterest
+                pied:PointOfInterest,
                 prov:Entity ;
         schema:rangeIncludes schema:URL .
 
@@ -135,7 +135,7 @@ pied:reference a rdf:Property ;
                 schema:Organization,
                 schema:Place,
                 pied:DefinedTerm,
-                pied:PointOfInterest
+                pied:PointOfInterest,
                 prov:Entity ;
         schema:rangeIncludes schema:URL .
 
