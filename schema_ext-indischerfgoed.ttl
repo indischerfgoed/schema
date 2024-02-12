@@ -42,6 +42,10 @@ pied:Story a rdfs:Class ;
         rdfs:subClassOf schema:Collection ;
         rdfs:comment "Type voor een verhaal in de context van www.onsland.nl."@nl .
 
+pied:Story a rdfs:Class ;
+        rdfs:label "Kaart"@nl ;
+        rdfs:subClassOf schema:Collection ;
+        rdfs:comment "Type voor een kaart in de context van www.onsland.nl."@nl .
 
 ## More specific classes of pied:Story
 
@@ -143,6 +147,18 @@ pied:imageURL a rdf:Property ;
         rdfs:label "Afbeeldings-URL"@nl ;
         rdfs:comment "Te gebruiken om bij entiteiten een link naar een gerelateerde online afbeelding op te nemen"@nl ;
         schema:domainIncludes schema:Event,
+                schema:Person,
+                schema:Organization,
+                schema:Place,
+                pied:DefinedTerm,
+                pied:PointOfInterest ;
+        schema:rangeIncludes schema:URL .
+
+pied:imageIIIF a rdf:Property ;
+        rdfs:label "Afbeelding-IIIF"@nl ;
+        rdfs:comment "Te gebruiken om bij CreativeWorks of Entiteiten een link naar de afbeelding op een externe IIIF-server op te nemen"@nl ;
+        schema:domainIncludes schema:CreativeWork,
+                schema:Event,
                 schema:Person,
                 schema:Organization,
                 schema:Place,
