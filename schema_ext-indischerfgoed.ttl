@@ -177,6 +177,18 @@ pied:sourceImage a rdf:Property ;
                 pied:PointOfInterest ;
         schema:rangeIncludes schema:URL .
 
+pied:alternativeImage a rdf:Property ;
+        rdfs:label "Alternatieve afbeelding"@nl ;
+        rdfs:comment "Te gebruiken om een tweede afbeelding op te nemen"@nl ;
+        schema:domainIncludes schema:Event,
+                schema:Person,
+                schema:Organization,
+                schema:Place,
+                pied:DefinedTerm,
+                pied:PointOfInterest,
+                pied:Story ;
+        schema:rangeIncludes schema:URL .
+
 pied:foundingYear a rdf:Property ;
         rdfs:label "Oprichtingsjaar"@nl ;
         rdfs:comment "Bij organisaties gebruiken om het jaar van oprichting vast te leggen, wanneer de volledige datum niet bekend is"@nl ;
