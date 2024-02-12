@@ -62,6 +62,9 @@
         "Story": {
             "@id": "pied:Story"
         },
+        "Map": {
+            "@id": "pied:Map"
+        },
         "StoryComponent": {
             "@id": "pied:StoryComponent"
         },
