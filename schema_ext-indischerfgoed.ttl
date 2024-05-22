@@ -17,7 +17,7 @@ pied:Interview a rdfs:Class ;
 
 pied:Interview a rdfs:Class ;
         rdfs:label "interviewSegment"@nl ;
-        rdfs:subClassOf schema:CreativeWork ;
+        rdfs:subClassOf schema:Interview ;
         rdfs:comment "Type voor interview segmenten."@nl .
 
 pied:ObjectPhotograph a rdfs:Class ;
