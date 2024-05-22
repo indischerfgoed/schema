@@ -20,6 +20,11 @@ pied:InterviewSegment a rdfs:Class ;
         rdfs:subClassOf schema:Interview ;
         rdfs:comment "Type voor interview segmenten."@nl .
 
+pied:Fragment a rdfs:Class ;
+        rdfs:label "Fragment"@nl ;
+        rdfs:subClassOf schema:Interview ;
+        rdfs:comment "Type voor fragmenten uit srt transcripten."@nl .
+
 pied:ObjectPhotograph a rdfs:Class ;
         rdfs:label "Objectfoto"@nl ;
         rdfs:subClassOf schema:CreativeWork ;
