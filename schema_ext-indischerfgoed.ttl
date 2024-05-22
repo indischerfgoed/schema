@@ -15,8 +15,8 @@ pied:Interview a rdfs:Class ;
         rdfs:subClassOf schema:CreativeWork ;
         rdfs:comment "Type voor interviews, zoals oral history."@nl .
 
-pied:Interview a rdfs:Class ;
-        rdfs:label "interviewSegment"@nl ;
+pied:InterviewSegment a rdfs:Class ;
+        rdfs:label "InterviewSegment"@nl ;
         rdfs:subClassOf schema:Interview ;
         rdfs:comment "Type voor interview segmenten."@nl .
 
