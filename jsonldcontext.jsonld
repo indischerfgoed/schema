@@ -11,6 +11,9 @@
         "Person": {
             "@id": "schema:Person"
         },
+        "Rights": {
+            "@id": "pied:Person"
+        },
         "Place": {
             "@id": "schema:Place"
         },
