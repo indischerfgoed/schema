@@ -129,6 +129,12 @@ pied:endYear a rdf:Property ;
                 schema:CreativeWork;
         schema:rangeIncludes schema:Integer .
 
+pied:interviewee a rdf:Property ;
+        rdfs:label "Geïnterviewde"@nl ;
+        rdfs:comment "Bij Interviews gebruikt om de relatie met de geïnterviewde te leggen."@nl ;
+        schema:domainIncludes pied:Interview;
+        schema:rangeIncludes schema:Person .
+
 pied:referenceURL a rdf:Property ;
         rdfs:label "Referentie URL"@nl ;
         rdfs:comment "Bij entiteiten te gebruiken om een link naar online referentie op te nemen"@nl ;
