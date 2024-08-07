@@ -20,6 +20,18 @@
         "PointOfInterest": {
             "@id": "pied:PointOfInterest"
         },
+        "Interview": {
+            "@id": "pied:Interview"
+        },
+        "InterviewSegment": {
+            "@id": "pied:InterviewSegment"
+        },
+        "ClosedCaption": {
+            "@id": "pied:ClosedCaption"
+        },
+        "Fragment": {
+            "@id": "pied:Fragment"
+        },
         "Organization": {
             "@id": "schema:Organization"
         },
