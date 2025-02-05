@@ -4,12 +4,19 @@
         "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
         "prov": "http://www.w3.org/ns/prov#",
         "schema": "http://schema.org/",
+        "pico": "https://personsincontext.org/model#",
         "skos": "http://www.w3.org/2004/02/skos/core#",
         "Event": {
             "@id": "schema:Event"
         },
         "Person": {
             "@id": "schema:Person"
+        },
+        "PersonObservation": {
+            "@id": "pico:PersonObservation"
+        },
+        "PersonReconstruction": {
+            "@id": "pico:PersonReconstruction"
         },
         "Rights": {
             "@id": "pied:Person"
