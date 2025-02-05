@@ -37,7 +37,7 @@ jobs:
       run: |
         python schema-docs/main.py --config $GITHUB_WORKSPACE/config.json
     - name: Upload docs as a github-pages artifact
-      uses: actions/upload-pages-artifact@v1
+      uses: actions/upload-pages-artifact@v3
       with: 
         path: doc/
     - name: Archive documentation artifacts
