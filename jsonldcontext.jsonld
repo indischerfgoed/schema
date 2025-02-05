@@ -16,7 +16,7 @@
             "@id": "pico:PersonObservation"
         },
         "PersonReconstruction": {
-            "@id": "pico:PersonReconstruction"
+            "@id": "pico:PersonReconstruction" 
         },
         "Rights": {
             "@id": "pied:Person"
