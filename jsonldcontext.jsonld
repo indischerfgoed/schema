@@ -87,6 +87,9 @@
         "Map": {
             "@id": "pied:Map"
         },
+        "LearningResource": {
+            "@id": "schema:LearningResource"
+        },
         "StoryComponent": {
             "@id": "pied:StoryComponent"
         },
@@ -296,6 +299,15 @@
         },
         "toLocation": {
             "@id": "schema:toLocation"
+        },
+        "educationalLevel": {
+            "@id": "schema:educationalLevel"
+        },
+        "teaches": {
+            "@id": "schema:teaches"
+        },
+        "learningResourceType": {
+            "@id": "schema:learningResourceType"
         },
         "url": {
             "@id": "schema:url"
