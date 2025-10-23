@@ -40,7 +40,12 @@ pied:PersonArchiveCard a rdfs:Class ;
 pied:PointofInterest a rdfs:Class ;
         rdfs:label "Bezienswaardigheid"@nl ;
         rdfs:subClassOf schema:Place ;
-        rdfs:comment "Type voor bezienswaardheid (Point of Interest), zoals forten, handelsposten, kampen, monumenten, e.d."@nl .
+        rdfs:comment "Type voor bezienswaardheid (Point of Interest), zoals forten, handelsposten, monumenten, e.d."@nl .
+
+pied:Camp a rdfs:Class ;
+        rdfs:label "Kamp"@nl ;
+        rdfs:subClassOf pied:PointofInterest ;
+        rdfs:comment "Type voor kampen zoals interneringskampen, krijgsgevangenkampen, concentratiekampen, republikeinse kampen, e.d."@nl .
 
 pied:Bronorganisatie a rdfs:Class ;
         rdfs:label "Bronorganisatie"@nl ;
@@ -64,6 +69,23 @@ pied:StoryComponent a rdfs:Class ;
         rdfs:subClassOf pied:Story ;
         rdfs:comment "Type voor een component van een verhaal in de context van www.onsland.nl."@nl .
 
+## Specific classes related to education
+
+pied:Level a rdfs:Class ;
+        rdfs:label "Niveau"@nl ;
+        rdfs:comment "Type waarmee we onderwijsniveaus aanduiden."@nl .
+
+pied:Theme a rdfs:Class ;
+        rdfs:label "Thema"@nl ;
+        rdfs:comment "Type waarmee we onderwijsthema's aanduiden."@nl .
+
+pied:Subject a rdfs:Class ;
+        rdfs:label "Vak"@nl ;
+        rdfs:comment "Type waarmee we vakken in het onderwijs aanduiden."@nl .
+
+pied:LessonType a rdfs:Class ;
+        rdfs:label "Lesvorm"@nl ;
+        rdfs:comment "Type waarmee we vorm van lessen aanduiden zoals werkvorm, gastspreker, tentoonstelling, e.d."@nl .
 
 ## More specific classes of schema:Event
 
@@ -218,6 +240,14 @@ pied:dissolutionYear a rdf:Property ;
         schema:domainIncludes schema:Organization,
                 schema:PointofInterest ;
         schema:rangeIncludes schema:Integer .
+
+## PIED specific properties related to educati
+
+pied:themeOf a rdf:Property ;
+        rdfs:label "Thema van"@nl ;
+        rdfs:comment "Gebruikt om relatie te leggen tussen schema:LearningResource en pied:Theme."@nl ;
+        schema:domainIncludes schema:LearningResource;
+        schema:rangeIncludes pied:Theme .
 
 # Rights
 
