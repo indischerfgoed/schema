@@ -111,8 +111,38 @@
         "TransferEvent": {
             "@id": "pied:TransferEvent"
         },
+        "Camp": {
+            "@id": "pied:Camp"
+        },
+        "Level": {
+            "@id": "pied:Level"
+        },
+        "Theme": {
+            "@id": "pied:Theme"
+        },
+        "Subject": {
+            "@id": "pied:Subject"
+        },
+        "LessonType": {
+            "@id": "pied:LessonType"
+        },
         "sameAs": {
             "@id": "schema:sameAs"
+        },
+        "themeOf": {
+            "@id": "pied:themeOf"
+        },
+        "learningResourceType": {
+            "@id": "schema:learningResourceType"
+        },
+        "educationalLevel": {
+            "@id": "schema:educationalLevel"
+        },
+        "associatedMedia": {
+            "@id": "schema:associatedMedia"
+        },
+        "teaches": {
+            "@id": "schema:teaches"
         },
         "birthYear": {
             "@id": "pied:birthYear"
